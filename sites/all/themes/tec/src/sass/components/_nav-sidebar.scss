@@ -1,0 +1,241 @@
+// SIDEBAR MENU
+//----------------------------------------------
+.nav-sidebar {
+
+  //Menú de primer nivel
+  ul.menu {
+    @include font-size(14px);
+    text-transform: uppercase;
+    border: none;
+    //Desktop
+    @include breakpoint($m) {
+      border: solid 1px $silver;
+    }
+
+    //Hojas de primer nivel
+    li {
+      background: #f2f2f2;
+      //Desktop
+      @include breakpoint($m) {
+        background: $white;
+      }
+
+      //Títulos de hoja de primer nivel
+      a {
+        border-bottom: solid 1px $silver;
+        padding: 10px;
+        color: $black;
+        &:hover {
+          background: $tec-blue-light;
+          color: $white;
+          margin-right: 0;
+        }
+      }
+      span {
+        display: block;
+        border-bottom: solid 1px $silver;
+        padding: 10px;
+        color: $black;
+      }
+
+      //Último título de hoja de primer nivel
+      &.last a, &.last span {
+        border-bottom: none !important;
+      }
+
+      //Título de hoja de primer nivel expandida
+      .active-trail,
+      .view-display-id-nav_sidebar_parent_node a,
+      .view-display-id-collaborations_host a,
+      .view-display-id-project_host a,
+      .view-display-id-researcher_host a  {
+        background: $tec-blue-light;
+        color: $white;
+        border-bottom: solid 1px #4c7fb4 !important;
+      }
+
+      //Títulos de hoja activa
+      a.active {
+        @include icon-before(menu_arrow);
+        font-style: italic;
+        border-bottom: solid 1px #447399 !important;
+      }
+
+      //Se ocultan hojas de primer nivel que no son enlaces
+      &.collapsed span {
+        display: none;
+      }
+    }
+
+    //Menú de segundo nivel
+    ul {
+      margin: 0;
+      padding: 0 0 0 1.5em;
+      @include font-size(11px);
+      text-transform: none;
+      border: none;
+      background: #4c7fb4;
+
+      //Hojas de segundo nivel
+      li {
+        background: transparent;
+        &.active-trail {
+          background: transparent;
+        }
+        .active-trail {
+          background: transparent;
+        }
+      }
+
+      //Títulos de hoja de segundo nivel
+      a {
+        color: $white;
+        margin-right: 5px;
+        border-bottom: solid 1px #447399 !important;
+        &:hover {
+          background: $tec-blue-light !important;
+          padding-left: 2.5em;
+          margin-left: -1.5em;
+          padding-right: 15px;
+        }
+      }
+      span {
+        color: $white;
+      }
+      .view-nav-sidebar a {
+        border-bottom: solid 1px #447399 !important;
+        &:last-child {
+          border-bottom: none !important;
+        }
+      }
+
+      //Menú de tercer nivel
+      ul {
+        background: transparent;
+
+        //Títulos de hoja de tercer nivel
+        a:hover {
+          background: $tec-blue-light;
+          padding-left: 4em;
+          margin-left: -3em;
+          padding-right: 15px;
+        }
+
+        //Menú de cuarto nivel
+        ul {
+          background: transparent;
+
+          //Títulos de hoja de cuarto nivel
+          a:hover {
+            background: $tec-blue-light;
+            padding-left: 5.5em;
+            margin-left: -4.5em;
+            padding-right: 15px;
+          }
+
+          //Menú de quinto nivel
+          ul {
+            background: transparent;
+
+            //Títulos de hoja de quinto nivel
+            a:hover {
+              background: $tec-blue-light;
+              padding-left: 7em;
+              margin-left: -6em;
+              padding-right: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .menu-aux .field-content {
+    padding: 0;
+  }
+}
+
+//RESPONSIVE DEL SIDEBAR MENU
+//----------------------------------------------
+.l-sidebar-first {
+  height: 0px;
+  position: relative;
+  @include breakpoint($m) {
+    height: auto;
+    position: static;
+  }
+
+  .menu-block-wrapper {
+    position: absolute;
+    left: -213px;
+    z-index: 2;
+    border-right: 7px solid #ccc;
+    width: 200px;
+    transition: all 0.5s ease;
+
+    &.active {
+      position: absolute;
+      left: -20px;
+      width: 100%;
+    }
+
+    @include breakpoint($m) {
+      position: static;
+      left: auto;
+      border-right: none;
+      width: 100%;
+    }
+  }
+
+  .boton_menu_responsive {
+    position: absolute;
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    max-width: 21px;
+    min-height: 38px;
+    width: 20px;
+    padding-top: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    z-index: 2;
+    top: 0px;
+    right: -22px;
+    @include breakpoint($m) {
+      display: none;
+    }
+  }
+
+  .modal_background {
+    position: fixed;
+    display: none;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.7);
+    opacity: 0;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    transition: opacity 2s;
+    &.active {
+      opacity: 1;
+      display: block;
+      @include breakpoint($m) {
+        display: none;
+      }
+    }
+    @include breakpoint($m) {
+      display: none;
+    }
+  }
+
+  .square {
+    width: 5px;
+    height: 5px;
+    background-color: #ffffff;
+    margin-bottom: 4px;
+    margin-left: 6px;
+    @include breakpoint($m) {
+      display: block;
+    }
+  }
+}

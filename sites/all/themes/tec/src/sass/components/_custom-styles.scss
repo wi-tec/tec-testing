@@ -1,0 +1,42 @@
+// CUSTOM STYLES
+//----------------------------------------------
+
+.box-wrapper {
+
+  border: 1px solid $silver;
+  margin: 0;
+
+  .header-title {
+    background-color: $silver;
+    margin: 0;
+    padding: 10px;
+    @include font-size(14px);
+    text-transform: uppercase;
+    font-weight: 500;
+    color: $tec-blue;
+  }
+
+  .element-wrapper{
+    border-bottom: 1px solid $silver;
+    border-radius: 0;
+    margin: 0 10px;
+    padding: 10px;
+    background: none;
+    a {
+      display: inline;
+      padding: 0;
+      color: #333;
+      @include font-size(14px);
+
+      &:hover {
+      cursor: pointer;
+        a {
+          color: #333;
+        }
+      }
+    }
+  }
+  .last{
+    border: none;
+  }
+}

@@ -1,0 +1,298 @@
+<?php
+
+/**
+ * @file
+ * Module file for OG Book module.
+ */
+
+/**
+ * Implements hook_permission().
+ */
+function og_book_permission() {
+  return array(
+    'bypass og book control' => array(
+      'title' => t('Bypass OG Book access control'),
+      'description' => t('Otherwise users can only add book pages to books within their organic groups.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu_alter().
+ */
+function og_book_menu_alter(&$items) {
+  // Override Book module's default callbacks.
+  $items['admin/content/book']['page callback'] = 'og_book_book_admin_overview';
+  $items['node/%node/outline']['access callback'] = '_og_book_book_outline_access';
+  $items['node/%node/outline/remove']['access callback'] = '_og_book_book_outline_remove_access';
+  $items['admin/content/book/%node']['access callback'] = '_og_book_book_outline_access';
+}
+
+/**
+ * Access callback for node/%node/outline and admin/content/book/%node path.
+ */
+function _og_book_book_outline_access($node) {
+  return og_book_is_node_in_users_group($node->nid) && _book_outline_access($node);
+}
+
+/**
+ * Access callback for node/%node/outline/remove.
+ */
+function _og_book_book_outline_remove_access($node) {
+  return og_book_is_node_in_users_group($node->nid) && _book_outline_remove_access($node);
+}
+
+/**
+ * Returns an administrative overview of all books limited by this module.
+ *
+ * @return string
+ *   A HTML-formatted string with the administrative page content.
+ *
+ * @see book_admin_overview()
+ */
+function og_book_book_admin_overview() {
+  $rows = array();
+  $headers = array(t('Book'), t('Operations'));
+
+  // Add any recognized books to the table list.
+  foreach (book_get_books() as $bid => $book) {
+    if (og_book_is_node_in_users_group($bid)) {
+      $rows[] = array(l($book['title'], $book['href'], $book['options']), l(t('edit order and titles'), 'admin/content/book/' . $book['nid']));
+    }
+  }
+  return theme('table', array('header' => $headers, 'rows' => $rows, 'empty' => t('No books available.')));
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function og_book_form_book_outline_form_alter(&$form, &$form_state, $form_id) {
+  _og_book_process_form($form);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function og_book_form_node_form_alter(&$form, &$form_state, $form_id) {
+  _og_book_process_form($form);
+}
+
+/**
+ * Remove information about books from groups the user does not belong.
+ *
+ * @param array $form
+ *   A form API array.
+ */
+function _og_book_process_form(&$form) {
+  if (user_access('bypass node access') || user_access('bypass og book control') || !isset($form['book'])) {
+    return;
+  }
+
+  if (isset($form['book']['bid'])) {
+    $bids_in_group = array_filter(array_keys($form['book']['bid']['#options']), 'og_book_is_node_in_users_group');
+    // Restore none and create new options.
+    $bids_in_group[] = 0;
+    if (isset($form['book']['bid']['#options']['new'])) {
+      $bids_in_group[] = 'new';
+    }
+    $bids_in_group = array_flip($bids_in_group);
+    $form['book']['bid']['#options'] = array_intersect_key($form['book']['bid']['#options'], $bids_in_group);
+  }
+  if (!empty($form['book']['plid']['#options'])) {
+    $plids_in_group = array_filter(array_keys($form['book']['plid']['#options']), function ($plid) {
+      $bid = db_select('book', 'b')
+        ->fields('b', array('bid'))
+        ->condition('mlid', $plid)
+        ->execute()
+        ->fetchField();
+      return $bid && og_book_is_node_in_users_group($bid);
+    });
+    $plids_in_group = array_flip($plids_in_group);
+    $form['book']['plid']['#options'] = array_intersect_key($form['book']['plid']['#options'], $plids_in_group);
+  }
+}
+
+/**
+ * Determine whether the current node belongs the current user's groups.
+ *
+ * @param int $nid
+ *   Node id.
+ * @param \stdClass|null $account
+ *   User object. Default is the current user.
+ *
+ * @return bool
+ *   TRUE, if node belongs to user's group or user has "bypass node access" or
+ *   "bypass og book control" permission, FALSE otherwise.
+ */
+function og_book_is_node_in_users_group($nid, stdClass $account = NULL) {
+  if ($account == NULL) {
+    global $user;
+    $account = $user;
+  }
+  if (user_access('bypass node access', $account) || user_access('bypass og book control', $account)) {
+    return TRUE;
+  }
+  $groups_of_user = &drupal_static(__FUNCTION__ . ':groups_of_user:' . $account->uid, array());
+  if (empty($groups_of_user)) {
+    $groups_of_user = og_get_groups_by_user($account, 'node');
+    if (!is_array($groups_of_user)) {
+      // It could be NULL instead of an array.
+      // @link https://www.drupal.org/node/2569471
+      $groups_of_user = array();
+    }
+  }
+  $groups_of_nodes = &drupal_static(__FUNCTION__ . ':groups_of_nodes', array());
+  if (!isset($groups_of_nodes[$nid])) {
+    $groups = og_get_entity_groups('node', $nid);
+    $groups_of_nodes[$nid] = !empty($groups['node']) ? $groups['node'] : array();
+  }
+  // The user must belong to the same group as the node.
+  return (bool) array_intersect($groups_of_user, $groups_of_nodes[$nid]);
+}
+
+/**
+ * Implements hook_query_alter().
+ *
+ * Alter Book listing page, provided by admin_views.module to return only
+ * those books which the current user has access.
+ */
+function og_book_query_alter(QueryAlterableInterface $query) {
+  if (!module_exists('admin_views') || !$query->hasTag('views_admin_views_book')) {
+    return;
+  }
+
+  $account = $query->getMetaData('account');
+  if ($account == NULL) {
+    global $user;
+    $account = $user;
+  }
+  if (user_access('bypass node access', $account) || user_access('bypass og book control', $account)) {
+    return;
+  }
+  $groups_of_user = array_keys(og_get_groups_by_user($account, 'node'));
+  if (!is_array($groups_of_user)) {
+    // It could be NULL instead of an array.
+    // @link https://www.drupal.org/node/2569471
+    $groups_of_user = array();
+  }
+  $bids = array_keys(og_book_get_books($groups_of_user));
+  if (empty($bids)) {
+    $bids[] = 0;
+  }
+  $query->condition('book.bid', $bids, 'IN');
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function og_book_block_info() {
+  $block = array();
+  $blocks['navigation_og'] = array(
+    'info' => t('OG Book: Book navigation per group'),
+    'cache' => DRUPAL_CACHE_PER_PAGE | DRUPAL_CACHE_PER_ROLE,
+  );
+  return $block;
+}
+
+/**
+ * Implements hook_block_view().
+ *
+ * Displays the book table of contents in a block when the current page is a
+ * single-node view of a book node. Table of contents is limited to books
+ * within the current group.
+ */
+function og_book_block_view($delta = '') {
+  $block = array();
+
+  if ($delta != 'navigation_og') {
+    return $block;
+  }
+
+  $current_bid = 0;
+  if ($node = menu_get_object()) {
+    $current_bid = empty($node->book['bid']) ? 0 : $node->book['bid'];
+  }
+
+  $groups = og_get_entity_groups('node', $node);
+  // Not a group content.
+  if (empty($groups['node'])) {
+    return $block;
+  }
+
+  $block['subject'] = t('Book navigation');
+  $group_ids = array_values($groups['node']);
+  $book_menus = array();
+  $pseudo_tree = array(0 => array('below' => FALSE));
+  foreach (og_book_get_books($group_ids) as $book_id => $book) {
+    if ($book['bid'] == $current_bid) {
+      // If the current page is a node associated with a book, the menu
+      // needs to be retrieved.
+      $book_menus[$book_id] = menu_tree_output(menu_tree_all_data($node->book['menu_name'], $node->book));
+    }
+    else {
+      // Since we know we will only display a link to the top node, there
+      // is no reason to run an additional menu tree query for each book.
+      $book['in_active_trail'] = FALSE;
+      // Check whether user can access the book link.
+      $book_node = node_load($book['nid']);
+      $book['access'] = node_access('view', $book_node);
+      $pseudo_tree[0]['link'] = $book;
+      $book_menus[$book_id] = menu_tree_output($pseudo_tree);
+    }
+  }
+  $book_menus['#theme'] = 'book_all_books_block';
+  $block['content'] = $book_menus;
+
+  return $block;
+}
+
+/**
+ * Returns an array of all books belonging to certain groups.
+ *
+ * This is mostly a copy of book_get_books().
+ *
+ * @param array $group_ids
+ *   An array of group IDs to filter by.
+ *
+ * @return array
+ *   An array of all books.
+ */
+function og_book_get_books($group_ids) {
+  if (empty($group_ids)) {
+    return array();
+  }
+
+  $all_books = &drupal_static(__FUNCTION__ . implode(':', $group_ids), array());
+  if (empty($all_books)) {
+    $nid_query = db_select('book', 'b')
+      ->fields('b', array('bid'))
+      ->distinct()
+      ->condition('og.gid', $group_ids, 'IN')
+      ->condition('og.entity_type', 'node');
+    $nid_query->join('og_membership', 'og', 'b.nid = og.etid');
+    $nids = $nid_query->execute()->fetchCol();
+
+    if ($nids) {
+      $query = db_select('book', 'b', array('fetch' => PDO::FETCH_ASSOC));
+      $query->join('node', 'n', 'b.nid = n.nid');
+      $query->join('menu_links', 'ml', 'b.mlid = ml.mlid');
+      $query->addField('n', 'type', 'type');
+      $query->addField('n', 'title', 'title');
+      $query->fields('b');
+      $query->fields('ml');
+      $query->condition('n.nid', $nids, 'IN');
+      $query->condition('n.status', 1);
+      $query->orderBy('ml.weight');
+      $query->orderBy('ml.link_title');
+      $query->addTag('node_access');
+      $result2 = $query->execute();
+      foreach ($result2 as $link) {
+        $link['href'] = $link['link_path'];
+        $link['options'] = unserialize($link['options']);
+        $all_books[$link['bid']] = $link;
+      }
+    }
+  }
+
+  return $all_books;
+}

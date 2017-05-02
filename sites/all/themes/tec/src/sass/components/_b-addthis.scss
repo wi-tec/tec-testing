@@ -1,0 +1,51 @@
+// ADDTHIS
+//----------------------------------------------
+.b-addthis {
+  text-align: center;
+  margin: 24px 0;
+  a {
+    @extend %inline-block;
+  }
+  span {
+    font-size: 0;
+    visibility: hidden;
+    line-height: 0;
+  }
+  #facebook,
+  #twitter,
+  #google,
+  #email {
+    @include font-size(20px);
+    @include size(32px);
+    line-height: 32px;
+    color: #fff;
+  }
+  #facebook {
+    @include icon-before(facebookfooter);
+    background: color($facebook);
+    &:hover {
+      background: color($facebook, light);
+    }
+  }
+  #twitter {
+    @include icon-before(twitterfooter);
+    background: color($twitter);
+    &:hover {
+      background: color($twitter, light);
+    }
+  }
+  #google {
+    @include icon-before(google);
+    background: color($google);
+    &:hover {
+      background: color($google, light);
+    }
+  }
+  #email {
+    @include icon-before(email);
+    background: color($color-accent);
+    &:hover {
+      background: color($color-accent, light);
+    }
+  }
+}

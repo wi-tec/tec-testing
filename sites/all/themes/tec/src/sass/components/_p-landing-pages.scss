@@ -1,0 +1,300 @@
+// Landing Pages Grid Layout
+//----------------------------------------------
+
+.node-type-landing {
+
+  // Region Containers
+  //----------------------------
+  .l-container,
+  .l-sidebar-second {
+    display: table; /* Fallback IE<9 */
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    &:after {
+      content: "";
+      flex: 0;
+    }
+  }
+  .l-container {
+    flex-wrap: wrap;
+  }
+  .l-sidebar-second {
+    flex-direction: column;
+  }
+
+  // Items
+  //----------------------------
+  .l-container,
+  .l-sidebar-second {
+    .panel-pane {
+      @include breakpoint($m) {
+        margin-right: 1%;
+        margin-left: 1%;
+      }
+    }
+  }
+  .l-container .panel-pane {
+    flex: 1 1 100%;
+    @include breakpoint($m) {
+      flex: 1 1 48%;
+    }
+  }
+}
+
+// Directories Fix
+//----------------------------
+.page-node-14,   //videos
+.page-node-15,   //impacto-tec
+.page-node-16,   //eventos
+.page-node-34,   //divulgacion-cientifica
+.page-node-44,   //intercambios-estudiantiles
+.page-node-4188,
+.page-node-4189,
+.page-node-4478, //directorio-investigadores
+.page-node-6831,
+.page-node-7387, //voz-tec
+.page-node-6835, //reglamentos-por-categoria
+.page-node-6833  //reglamentos-por-categoria, derogados
+{
+  .l-container .panel-pane {
+    @include breakpoint($m) {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+// Landing Pages Grid Items
+//----------------------------------------------
+
+.landing-page-grid-item {
+
+  position: relative;
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid $silver;
+
+  .views-row {
+    padding: 2px 0;
+    margin-left: 0;
+  }
+
+  h2.block-title {
+    @include font-size(18px);
+    margin: 10px 0;
+    color: $color-primary;
+    text-transform: uppercase;
+  }
+
+  h3.title {
+    @include font-size(13px);
+    display: inline-block;
+    margin: 0;
+    font-weight: 400;
+    a {
+      color: $color-primary;
+      &:hover {
+        color: $color-accent;
+      }
+    }
+  }
+
+  .date {
+    @include font-size(12px);
+    display: block;
+  }
+
+  .more-link {
+    position: absolute;
+    right: 0;
+    bottom: 1px;
+    font-size: 0;
+    line-height: 0;
+
+    a {
+      &:before {
+        @include font-size(22px);
+        background: $color-accent;
+        color: #fff;
+        padding: 0 14px;
+        line-height: 24px;
+        font-weight: bold;
+        content: "+";
+      }
+    }
+  }
+
+  &:before {
+     position: absolute;
+     top: 0;
+     left: 0;
+     content: '';
+     display: block;
+     width: 100%;
+     height: 10px;
+  }
+
+  &.viral {
+    &:before, .more-link a:before {background: $viral;}
+  }
+  &.sistemas {
+    &:before, .more-link a:before {background: $estudiantes;}
+  }
+  &.tramites {
+    &:before, .more-link a:before {background: $formalities;}
+  }
+  &.noticias, &.noticias-nofront {
+    &:before, .more-link a:before {background: $news;}
+  }
+  &.servicios {
+    &:before, .more-link a:before {background: $services;}
+  }
+  &.oferta {
+    &:before, .more-link a:before {background: $academic-offer;}
+  }
+  &.vinculacion {
+    &:before, .more-link a:before {background: $connection;}
+  }
+  &.publicaciones {
+    &:before, .more-link a:before {background: $publications;}
+  }
+  &.eventos, &.eventos-nofront {
+    &:before, .more-link a:before {background: $events;}
+  }
+  &.audiovisuales {
+    &:before, .more-link a:before {background: $audiovisual;}
+  }
+  &.enlaces {
+    &:before, .more-link a:before {background: $links;}
+  }
+  &.calendarios {
+    &:before, .more-link a:before {background: $academic-offer;}
+  }
+  &.centros {
+    &:before, .more-link a:before {background: $light-green;}
+  }
+  &.proyectos {
+    &:before, .more-link a:before {background: $connection;}
+  }
+  &.investigadores {
+    &:before, .more-link a:before {background: $audiovisual;}
+  }
+  &.extension {
+    &:before, .more-link a:before {background: $academic-offer;}
+  }
+  &.departamentos {
+    &:before, .more-link a:before {background: $services;}
+  }
+
+  .v-landing-pane-viral {
+    .views-field-title {
+      margin: 5px 0 10px 0;
+    }
+    .video-section-title a {
+      @include font-size(18px);
+      color: $color-primary;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+  }
+
+  &.noticias, &.noticias-nofront, &.eventos, &.eventos-nofront {
+    @include breakpoint($m) {
+      min-height: 550px;
+    }
+    .views-row {
+      padding: 15px 0;
+      border-bottom: 1px solid $silver;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+
+  @include breakpoint($m) {
+    min-height: 265px;
+  }
+
+}
+
+//Style for the specific Internacional link
+//----------------------------------------------
+.landing-page-grid-item.enlaces {
+  li.internacional {
+    a {
+      color: #0071bc;
+      font-weight: 500;
+    }
+  }
+}
+
+// The following styles are only applied to the 5 menu landing pages
+//----------------------------------------------
+.page-node-6,  // EL TEC
+.page-node-19, // ADMISION
+.page-node-21, // OFERTA ACADEMICA
+.page-node-28, // INVESTIGACION Y EXTENSION
+.page-node-40  // VIDA EN EL CAMPUS
+{
+
+  .entity-paragraphs-item {
+    margin: 0 0 20px 0;
+  }
+
+  .l-featured .paragraphs-items-field-parg-banner-full .paragraphs-item-banner {
+    position: relative;
+    .field-text-paragraph-description {
+      background: rgba(0,0,0,0.75);
+      margin: 10px;
+      overflow: auto;
+      p {
+        @include font-size(13px);
+        margin: 10px;
+        padding: 10px;
+        color: white;
+        &:first-child{
+          display: inline-block;
+          margin-bottom: 0;
+        }
+      }
+      @media (min-width: 825px) {
+        position: absolute;
+        bottom: 0;
+        z-index: 999;
+        width: 40%;
+      }
+    }
+  } // 5 menu landing pages .paragraphs-item-banner
+
+  .l-main-content {
+    .panel-pane {
+      margin-bottom: 20px;
+      padding: 20px;
+      border: 1px solid $silver;
+      .pane-title {
+        @include font-size(15px);
+        margin-bottom: 15px;
+        display: block;
+        font-weight: 400;
+        text-transform: uppercase;
+        color: $tec-blue-light;
+      }
+      @include breakpoint($m) {
+        min-height: 265px;
+      }
+    }
+    h3.title {
+      @include font-size(13px);
+      margin: 0;
+      display: inline-block;
+      font-weight: 400;
+      a {
+        color: $color-primary;
+        &:hover {
+          color: $color-accent;
+        }
+      }
+    }
+  } // 5 menu landing pages .l-main-content
+
+} // 5 menu landing pages

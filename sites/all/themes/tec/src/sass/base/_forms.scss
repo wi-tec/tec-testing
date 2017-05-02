@@ -1,0 +1,105 @@
+// FORMS
+//----------------------------------------------
+
+// Input
+//----------------------
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+textarea,
+.recaptcha_input_area input[type="text"] {
+  box-sizing: border-box;
+  max-width: 100%;
+  padding: 2px 0px 2px 5px;
+  border: 1px solid #808080 !important;
+  &:focus {
+    outline: none;
+  }
+}
+
+.views-widget-filter-keys label {
+  display: none;
+}
+
+.view-directory-contacts-per-node {
+  .views-widget-filter-keys input {
+    margin-top: 5px;
+  }
+}
+
+.view-directory-projects, .view-publications {
+  .views-widget-filter-keys input {
+    margin-top: 15px;
+  }
+}
+
+// Submit Buttons
+//----------------------
+input[type="submit"] {
+  // @include font-size(16px);
+  font-size: 80%;
+  margin: 0;
+  padding: 6px 8px;
+  box-shadow: none;
+  border: solid 1px $tec-blue-light;
+  border-radius: 2px;
+  background: transparent;
+  color: $tec-blue-light;
+  transition: all 250ms ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background: $tec-blue-light;
+    color: #fff;
+  }
+}
+
+// Text areas
+//----------------------
+.resizable-textarea .grippie {
+  border: 0;
+  background: none;
+}
+
+// Captcha
+//----------------------
+fieldset.captcha {
+  padding: 0;
+  border: 0;
+
+  img#recaptcha_logo,
+  .fieldset-legend {
+    display: none;
+  }
+
+  .fieldset-description {
+    padding: 10px 0;
+  }
+}
+
+// Webforms
+//----------------------
+.node-type-webform {
+  .recaptchatable,
+  .recaptchatable #recaptcha_image {
+    border: 0 !important;
+  }
+}
+
+// Required fields
+//----------------------
+.marker, .form-required {
+  // color: red;
+}
+
+
+
+
+
+
+
+
+
+
+

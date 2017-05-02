@@ -1,0 +1,16 @@
+.l-featured {
+  width: 100%;
+  clear: both;
+}
+@media (min-width:960px) {
+  .l-main-content {
+    width: 79.88131%;
+    float: left;
+    margin-right: 1.69492%
+  }
+  .l-sidebar-second {
+    width: 30.72881%;
+    float: right;
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,121 @@
+// HEADER BLOCKS
+//----------------------------------------------
+
+// Site name / Logo
+h1.site-name {
+  float: left;
+  margin: 0;
+  a {
+    @include logo(logo, 200px, 80px, 0 24px);
+    background-size: 100%;
+    text-indent: -100px !important;
+    .l-footer & {
+      @include logo(logo, 200px, 31px, 0 0);
+    }
+  }
+}
+
+// Breadcrumb
+.breadcrumb {
+  padding: 0 0 0 10px;
+  border-left: 8px solid $color-secondary;
+  @include font-size(12px);
+  line-height: 48px;
+  color: $tec-gray;
+  vertical-align: bottom;
+  a {
+    color: $tec-gray;
+  }
+}
+
+// Text resize buttons
+.b-text-resize {
+  float: right;
+  height: 24px;
+  padding: 0 10px;
+
+  @media (max-width: 980px) {
+    float: left;
+  }
+
+  a#text_resize_increase,
+  a#text_resize_reset,
+  a#text_resize_decrease {
+    @include size(24px);
+    margin: 0;
+    padding: 0 20px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+
+  a#text_resize_increase {
+    @include bg-img(icons/nav/text_resize_increase, 26px);
+  }
+  a#text_resize_reset {
+    @include bg-img(icons/nav/text_resize_reset, 22px);
+    padding-right: 15px;
+  }
+  a#text_resize_decrease {
+    @include bg-img(icons/nav/text_resize_decrease, 18px);
+  }
+}
+
+// Language switcher
+.b-lang-switch {
+  @include font-size(12px);
+  ul {
+    @extend %list-reset;
+    li {
+      @extend %inline-block;
+      .active {
+        display: none;
+      }
+    }
+  }
+  .l-sidebar-second & {
+    @include btn($color-accent);
+    margin: 20px 0;
+  }
+  // Top Bar
+  .l-top-bar & {
+    float: right;
+    padding: 0 20px;
+    line-height: 28px;
+  }
+  &.hidden {
+    display: none;
+  }
+}
+
+// Language switcher
+.b-google-translate {
+  // .front & {
+  //   display: none;
+  // }
+  float: right;
+  .goog-te-gadget-icon {
+    display: none;
+  }
+  .goog-te-gadget-simple {
+    margin: 0 10px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 2px;
+    border: none !important;
+    line-height: 24px;
+    @include font-size(12px);
+    font-family: $base-font-family;
+    font-weight: $base-font-weight;
+    font-style: italic;
+    padding: 1px 0 0 0;
+  }
+  .goog-te-menu-value {
+    color: #fff;
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+  &.hidden {
+    display: none;
+  }
+}

@@ -1,0 +1,121 @@
+// DIRECTORIES
+//----------------------------------------------
+
+.view-academic-offerings {
+
+  .view-content {
+
+    background-color: #f2f2f2;
+    margin: auto;
+    @include span(12);
+    //overflow: auto;
+
+    .group {
+      overflow: auto;
+      background-color: $white;
+      margin: 17.578px 17.578px 0 17.578px;
+      padding: 0 20px 14px 0;
+
+      a {
+        color: $tec-blue;
+      }
+
+      h3 {
+        font-size: 15px;
+        margin: 14px 0 5px 12px;
+        text-transform: uppercase;
+      }
+
+      .views-row {
+        margin-left: 25px;
+        text-align: left;
+        a {
+          font-size: 13px;
+          color: $tec-blue;
+          font-weight: 400;
+          &:before {
+            content: "• ";
+            color: $silver;
+            font-size: 17px;
+            margin: 0 3px 0 -13px;
+          }
+        }
+      }
+
+      &:last-child {
+        margin-bottom: 17.578px;
+      }
+
+      @include breakpoint(869px) {
+
+        &:first-child {
+          @include span(5.7 of 12);
+          margin-bottom: 17.578px;
+        }
+
+        @include span(5.6 of 12 at 6);
+
+      }
+
+    }
+  }
+}
+
+//Vista específica de Programas académicos
+//-------------------------------------------
+.view-dom-id-4636a61e24dbec0bf8f800fcc1858713 {
+  .group {
+    &:first-child {
+      height: 369px;
+    }
+    &:nth-child(3) {
+      float: left;
+      margin-top: 0;
+    }
+  }
+}
+
+// Calendario Institucional
+//-----------------------------
+.schedule-directory {
+  background-color: #f2f2f2;
+  overflow: auto;
+  .schedule-list {
+    display: inline-block;
+    vertical-align: top;
+    background-color: $white;
+    margin: 3.3% 3.3% 3.3% 3.3%;
+    padding: 0 20px 14px 5px;
+    width: 93%;
+    h3 {
+      font-size: 15px;
+      margin: 14px 0 5px 7px;
+      text-transform: uppercase;
+    }
+    ul {
+      list-style-type: none;
+      padding-left: 15px;
+      a {
+        color: $tec-blue;
+        font-size: 14px;
+        font-weight: 400;
+        &:before {
+          content: "• ";
+          color: $silver;
+          font-size: 17px;
+          margin: 0 3px 0 0px;
+        }
+      }
+    }
+    @include breakpoint($s) {
+      width: 44.5%;
+      margin: 3.3% 0 3.3% 3.3%;
+    }
+  }
+}
+
+
+
+
+
+

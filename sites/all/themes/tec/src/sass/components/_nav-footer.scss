@@ -1,0 +1,21 @@
+// FOOTER MENU
+//----------------------------------------------
+.nav-footer {
+  ul.menu {
+    text-align: center;
+    li {
+      @extend %inline-block;
+      padding: 0 10px;
+      a {
+        @include font-size(11px);
+        text-transform: uppercase;
+        color: #fff;
+        line-height: 32px;
+        // line-height: 80px;
+        &:hover {
+          color: $silver;
+        }
+      }
+    }
+  }
+}

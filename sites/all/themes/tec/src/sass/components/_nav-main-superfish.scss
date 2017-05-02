@@ -1,0 +1,362 @@
+// Menu Principal (Superfish)
+//----------------------------------------------------------
+
+.nav-main-superfish {
+
+  //Global styles
+  position: relative;
+
+  .sf-megamenu-wrapper{
+    float: right;
+  }
+  .sf-menu {
+    position: static;
+    float: right;
+  }
+  li {
+    white-space: normal;
+    position: static;
+  }
+
+  //Styles for the menu options when the mobile view is activated
+  .sf-accordion{
+    li ul li{
+      a, span{
+        @include font-size(14px);
+        margin-bottom: 10px;
+        color: $white;
+        padding-left: 5%;
+      }
+    }
+  }
+
+  //Main Menu mobile button styles
+  .sf-accordion-toggle {
+    a.sf-expanded span {
+      @include icon-before(nav_close);
+      &:before {
+        @include font-size(24px);
+        line-height: 80px;
+        vertical-align: baseline;
+        // margin-right: 8px;
+      }
+    }
+    span {
+      display: block;
+      margin: 0;
+      cursor: pointer;
+      text-align: right;
+      float: right;
+      color: #fff;
+      // font-weight: 300;
+      font-size: 0;
+      line-height: 0;
+      @include icon-before(nav);
+      &:before {
+        @include font-size(24px);
+        line-height: 80px;
+        vertical-align: baseline;
+        transition: all 2s;
+        // margin-right: 8px;
+      }
+      // @media (max-width: 480px) {
+      //   font-size: 0;
+      //   line-height: 0;
+      //   &:before {
+      //     @include font-size(24px);
+      //     line-height: 80px;
+      //   }
+      // }
+    }
+  }
+
+  //Styles for the desktop menu
+  //First level
+  .sfHover > a{
+    border-bottom: 1px solid;
+  }
+  .sf-depth-1{
+    color: $white;
+    > span, > a {
+
+      @media (min-width: 980px) {
+        margin: 31px 10px 0px 10px;
+        @include font-size(15px);
+      }
+
+      @media (min-width: 996px) {
+        @include font-size(16px);
+      }
+
+      text-transform: uppercase;
+      // font-weight: 400;
+      //line-height: 80px;
+      margin-bottom: 20px;
+      padding-bottom: 5px;
+      color: #fff;
+      &:hover {
+        color: #fff;
+        //font-style: italic;
+      }
+    }
+
+    .sf-megamenu {
+      margin-left: -20px;
+    }
+  }
+
+  .sf-megamenu {
+    background: rgba(0,0,0,.8);
+    width: 1024px !important;
+    margin-top: 40px !important;
+    float: center;
+    min-height: 200px;
+    padding-bottom: 20px;
+
+    .sf-megamenu-wrapper{
+      width: 1024px !important;
+
+      > ol{
+        width: auto !important;
+        //height: auto !important;
+
+        > li{
+          margin-right: 20px !important;
+          //overflow: hidden !important;
+          padding-top: 40px;
+          width: 175px !important;
+          display: inline;
+          //min-height: 200px;
+
+          a{
+            @include font-size(13px);
+            margin-bottom: 7px;
+            color: $white; //white
+            width: 175px;
+            &:hover{
+              //font-style: italic;
+              text-decoration: underline;
+            }
+          }
+
+          .sf-megamenu-column > a, > a, .sf-megamenu-column > span{
+            padding-bottom: 15px !important;
+            @include font-size(15px);
+            font-weight: 400;
+          }
+
+          .sf-megamenu-column {
+            .sfHover > a {
+              border-bottom: none !important;
+            }
+          }
+
+          &.sfHover a {
+            border-bottom: none !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+//Estilos para responsive del main menu
+.nav-main-superfish {
+  #nav-main-estudiantes,
+  #nav-main-docentes,
+  #nav-main-colaboradores,
+  #nav-main-investigadores {
+    @media (min-width: 980px) {
+      display: none;
+    }
+  }
+}
+
+.nav-main-superfish {
+  #superfish-1-accordion {
+    @media (max-width: 980px) {
+      height: 0;
+      li {
+        background-color: $silver;
+        padding: 10px 0 10px 20px;
+        margin: 0 -20px;
+        width: 120%;
+        &:first-child {
+          padding-top: 20px;
+        }
+        &:last-child {
+          padding-bottom: 20px;
+        }
+      }
+      li a {
+        margin: 0;
+        padding: 0;
+        @include font-size(14px);
+        color: $tec-blue;
+        font-weight: 400;
+      }
+
+      #nav-main-estudiantes,
+      #nav-main-docentes,
+      #nav-main-colaboradores,
+      #nav-main-investigadores {
+        @include font-size(12px);
+      }
+
+      #menu-4557-1 {
+      padding-top: 5px;
+        a {
+          border-top: 1px solid #b3b3b3;
+          padding-top: 15px;
+          width: 86%;
+        }
+      }
+    }
+    .sf-accordion-button {
+      display: none;
+    }
+  }
+}
+
+.l-page > .modal_background {
+  position: fixed;
+  display: none;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,.7);
+  top: 0;
+  left: 0;
+  z-index: 3;
+  transition: opacity 2s;
+  &.active {
+    opacity: 1;
+    display: block;
+    @include breakpoint($m) {
+      display: none;
+    }
+  }
+  @include breakpoint($m) {
+    display: none;
+  }
+}
+
+.l-top-bar {
+  #search-block-form {
+    @media (max-width: 980px) {
+      display: none;
+      transition: all 2s;
+      .form-search {
+        width: 0px;
+      }
+      &.active {
+        display: block;
+        margin-bottom: 1px;
+        .form-search {
+          width: 233px;
+        }
+      }
+    }
+  }
+  #search-toggle {
+    @include icon-before(search);
+    cursor: pointer;
+    float: right;
+    margin-top: 3px;
+    margin-right: 20px;
+    &.active {
+      display: none
+    }
+    &:before {
+      @include font-size(11px);
+      color: $white;
+    }
+    @media (min-width: 980px) {
+      display: none;
+    }
+  }
+}
+
+.nav-main-superfish {
+  @media (min-width: 980px) {
+    #menu-4671-1{
+      margin-left: 15% !important;
+    }
+    #menu-4586-1{
+      #menu-4587-1{
+        width: 145px !important;
+      }
+
+      #menu-4687-1{
+        width: 150px !important;
+      }
+
+      #menu-3699-1{
+        width: 120px !important;
+      }
+
+      #menu-4596-1{
+       width: 100px !important;
+      }
+
+      ul{
+        > li{
+          padding-left: 35% !important;
+        }
+      }
+
+      #menu-4588-1{
+        width: 120px !important;
+      }
+
+      #menu-4686-1{
+       width: 100px !important;
+      }
+  }
+
+    #menu-4597-1{
+      ul{
+        > li{
+          padding-left: 53% !important;
+          ol{
+            li{
+            display:block;
+            float: none;
+            padding-top:0px;
+            margin-bottom:5px;
+              a{
+                margin:0px;
+                padding: 5px !important;
+              }
+            }
+            #menu-4598-1{
+              padding-top:40px;
+            }
+          }
+        }
+      }
+    }
+
+    #menu-4605-1{
+      ul{
+        > li{
+          padding-left: 16% !important;
+        }
+      }
+    }
+
+    #menu-4639-1{
+      ul{
+        > li{
+          padding-left: 25% !important;
+        }
+      }
+    }
+  }
+}
+
+// .l-main-content {
+//   margin-left: 10px;
+//   @include breakpoint($m) {
+//     margin-left: auto;
+//   }
+// }

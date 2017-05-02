@@ -1,0 +1,155 @@
+.styleguide-imag {
+  .full-box {
+    width: 1024px;
+    height: 40px;
+    border: 1px dashed $gray;
+    margin-bottom: 20px;
+  }
+
+  .texto {
+    text-align: center;
+    margin: 0;
+  }
+
+  img.img-grande {
+    position: relative;
+    max-width: none;
+    width: 525.33px;
+    height: auto;
+  }
+
+  .one-column {
+    float: left;
+  }
+
+  .bordered {
+    margin-bottom: 15px;
+    border: 1px dashed $gray;
+    height: 780px;
+  }
+
+  .one-column1-1 {
+    width: 234px;
+    margin: 0 15.33px 20px 0;
+  }
+
+  .one-column2-1 {
+    width: 255px;
+    margin: 0 15.33px 20px 0;
+  }
+
+  .one-column3-1 {
+    width: 255px;
+    margin: 0 15.33px 20px 0;
+  }
+
+  .one-column4-1 {
+    width: 234px;
+    margin: 0 0 20px 0;
+  }
+
+  .one-column1-2 {
+    width: 234px;
+    margin: 0 18.33px 20px 0;
+  }
+
+  .one-column2-2 {
+    width: 245px;
+    margin: 0 18.33px 20px 0;
+  }
+
+  .one-column3-2 {
+    width: 245px;
+    margin: 0 18.33px 20px 0;
+  }
+
+  .one-column4-2 {
+    width: 245px;
+    margin: 0 0 20px 0;
+  }
+
+  .img1 {
+    border: 1px solid black;
+    width: 255px;
+    height: 150px;
+    margin: 10px 0 40px 0;
+    .ancho {
+      position: relative;
+      left: 105px;
+      top: 135px;
+    }
+    .alto {
+      position: relative;
+      left: 260px;
+      top: 10px;
+    }
+  }
+
+  .img2 {
+    border: 1px solid black;
+    width: 255px;
+    height: 170px;
+    margin: 10px 0 40px 0;
+    .ancho {
+      position: relative;
+      left: 105px;
+      top: 155px;
+    }
+    .alto {
+      position: relative;
+      left: 260px;
+      top: 10px;
+    }
+  }
+
+  .img3 {
+    border: 1px solid black;
+    width: 234px;
+    height: 150px;
+    margin: 10px 0 40px 0;
+    .ancho {
+      position: relative;
+      left: 95px;
+      top: 135px;
+    }
+    .alto {
+      position: relative;
+      left: 240px;
+      top: 10px;
+    }
+  }
+
+  .img4 {
+    border: 1px solid black;
+    width: 1024px;
+    height: 275px;
+    margin: 10px 0 40px 0;
+    .ancho {
+      position: relative;
+      left: 475px;
+      top: 260px;
+    }
+    .alto {
+      position: relative;
+      left: 1030px;
+      top: 65px;
+    }
+  }
+
+  .img5 {
+    border: 1px solid black;
+    width: 520px;
+    height: 320px;
+    margin: 10px 0 40px 0;
+    .ancho {
+      position: relative;
+      left: 525px;
+      top: 130px;
+    }
+    .alto {
+      position: relative;
+      left: 230px;
+      top: 265px;
+    }
+  }
+}
