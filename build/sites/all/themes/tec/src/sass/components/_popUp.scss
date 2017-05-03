@@ -1,0 +1,38 @@
+.popup-container {
+  display: block;
+  width: 325px;
+  height: 125px;
+  margin-top: 30px;
+  margin-right: 0;
+  background-color: white;
+  border: solid 1px #c2c3c3;
+  min-height: 93px;
+  min-width: 312px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.09);
+
+  .popup-title {
+    display: block;
+    width: 310px;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-left: auto;
+    font-weight: 400;
+    font-size: 14px;
+    text-align: left;
+    color: #034a91;
+  }
+  .popup-text {
+    display: block;
+    line-height: 16px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #4d4d4d;
+    width: 310px;
+    margin-top: 4px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 600px;
+  }
+}
+

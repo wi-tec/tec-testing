@@ -1,0 +1,576 @@
+//Sidebar
+//----------------------------------------------
+
+//Style for specific fields of the sidebar second
+
+.field-img-main, .pane-location-per-node-panel-pane-2 {
+  margin-bottom: 15px;
+}
+
+.views-field-field-img-acreditation img {
+  width: 80%;
+  margin-left: 10%;
+}
+
+.pane-node-field-location {
+  padding: 10px 0;
+  margin-bottom: 15px;
+
+  .pane-content {
+    border-left: 5px solid $silver;
+    margin-left: 20px;
+
+    .field-location {
+      @include font-size(13px);
+      margin-left: 10px;
+    }
+  }
+}
+
+.l-sidebar-first .pane-location-per-node-panel-pane-2 {
+  margin-bottom: 15px;
+}
+
+//Style for specific fields of the sidebar second
+.pane-node-field-text-university-title,
+.pane-node-field-text-academic-degree,
+.pane-node-field-tax-academic-mode,
+.pane-node-field-text-schedule,
+.pane-node-field-eref-campus,
+// .pane-node-field-eref-school,
+.school-sidebar,
+.pane-bundle-fpp-links,
+.pane-bundle-fpp-files,
+.pane-bundle-fpp-text,
+.pane-bundle-fpp-hour,
+.pane-node-field-link-related,
+.pane-node-field-link-featured-content,
+.pane-node-field-link-academic-offer,
+.pane-node-field-link-about,
+.pane-academic-programs-node-panel-pane-1,
+.pane-location-map-panel-pane-1,
+.pane-relation-unit-direction-panel-pane-1,
+.pane-news-news-per-dependency-panel-pane-1,
+.pane-news-article-per-dependency-panel-pane-1,
+.pane-academic-offer-study-plan-per-node-panel-pane-1,
+.pane-relation-unit-secretary-panel-pane-1,
+.pane-bundle-fpp-contacts,
+.pane-relation-unit-administrative-contacts-panel-pane-1,
+.pane-agenda-events-per-dependency-panel-pane-2,
+.pane-node-field-tax-study-plan-mode,
+.pane-node-field-tax-project-area,
+.pane-node-field-tax-project-type,
+.pane-node-field-tax-subarea,
+.pane-directory-researchers-vie-panel-pane-2,
+.paragraphs-item-paragraph-links,
+.pane-node-field-eref-related-components,
+.pane-node-field-eref-example-pages,
+.pane-node-field-parg-featured-content,
+.pane-node-field-link-social-networks,
+.pane-contacts-professor-contact-panel-pane-1,
+.pane-field-collection-item-field-link-featured-content,
+.pane-field-collection-item-field-eref-school,
+.pane-field-collection-item-field-link-related,
+.pane-node-field-file-attachment {
+
+  tbody {
+    border: none;
+
+    tr {
+      border: none;
+    }
+  }
+
+  .pager {
+    border: none !important;
+    text-align: center !important;
+    margin: 0;
+  }
+
+  position: relative;
+  margin-bottom: 15px;
+  border: 1px solid $silver;
+
+  .title,
+  .pane-title,
+  .field-label,
+  .field-text-paragraph-title {
+    font-size: 12px !important;
+    text-transform: uppercase;
+    //text-align: center;
+    margin: 0;
+    padding: 10px 10px 10px 30px;
+    background: $silver;
+
+    &:before {
+      @include font-size(16px);
+      margin-top: 0px;
+      //position: absolute;
+      display: inline;
+      top: auto;
+      left: 20px;
+      margin-right: 3px;
+      margin-left: -22px;
+    }
+  }
+
+  margin-top: 15px;
+  @include breakpoint($l) {
+    margin-top: 0;
+  }
+
+  .field-text-university-title,
+  .field-text-academic-degree,
+  .field-text-fpp-body,
+  .field-tax-academic-mode,
+  .field-text-schedule,
+  .field-eref-campus,
+  .field-eref-school,
+  .field-link-related,
+  .field-link-academic-offer,
+  .field-link-about,
+  .field-file-document,
+  .field-link-featured-content,
+  .field-eref-contact,
+  .field-tax-study-plan-mode,
+  .field-tax-project-area,
+  .field-tax-project-type,
+  .field-tax-subarea,
+  .field-eref-related-components,
+  .field-eref-example-pages,
+  .field-link-social-networks,
+  .field-file-attachment {
+    display: block;
+    @include font-size(13px);
+    //text-align: center;
+    padding: 10px 0;
+    margin-left: 5%;
+    li {
+      list-style: none;
+      margin-left: -40px !important;
+      padding-right: 10px !important;
+      padding-left: 5% !important;
+    }
+  }
+
+  .field-text-schedule p {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.pane-bundle-fpp-files, .pane-node-field-file-attachment {
+  .node-document {
+    h1 {
+      text-align: center;
+      margin: 0;
+      a {
+        @include font-size(12px);
+      }
+    }
+    .content {
+      .field-file-document {
+        border-top: 1px solid $silver;
+        .file {
+          a {
+            word-wrap: break-word;
+          }
+        }
+      }
+    }
+  }
+  figure {
+    background: none;
+    .file-icon {
+      display: inline;
+    }
+  }
+}
+
+.pane-node-field-eref-campus .field-eref-campus {
+  margin-left: 5%;
+}
+
+.pane-node-field-parg-featured-content .field-parg-featured-content {
+  .entity-paragraphs-item {
+    margin: 0;
+  }
+  .video-embed-description, .field-text-paragraph-description {
+    @include font-size(12px);
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px 0;
+  }
+}
+
+.panel-pane .sidebar-block {
+  border: 1px solid $silver;
+  position: relative;
+
+  h2.title {
+    margin: 0;
+    padding: 10px 0;
+    @include font-size(12px);
+    background: $silver;
+    text-align: center;
+
+    &:before {
+      @include font-size(18px);
+      margin-top: 0px;
+      position: absolute;
+      display: inline;
+      top: auto;
+      left: 20px;
+    }
+  }
+}
+
+// .l-main-content, // Rev
+.l-sidebar-second {
+
+  .views-field-title {
+    display: block;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding: 10px 0;
+    //overflow: hidden;
+    border-bottom: 1px solid $silver;
+    &:last-child {
+      border-bottom: none;
+    }
+    a, li {
+      //text-align: center;
+      @include font-size(12px);
+      font-weight: 500;
+      color: $black;
+    }
+  }
+
+  //Fields with multiple rows
+  .field-file-document,
+  .field-eref-document-group,
+  .field-link-related,
+  .field-link-featured-content,
+  .field-link-academic-offer,
+  .field-link-about,
+  .field-eref-campus,
+  .field-text-university-title,
+  .field-link-paragraph-link,
+  .field-eref-related-components,
+  .field-eref-example-pages,
+  .field-link-social-networks,
+  .field-eref-school,
+  .field-file-attachment {
+
+    @extend .views-field-title;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .view-academic-programs-node {
+    .field-link-featured-content {
+      @extend .views-field-title;
+      a {
+        color: $tec-blue;
+        font-weight: 400;
+      }
+      &:last-child {
+        border-bottom: 1px solid $silver;
+      }
+    }
+    .views-row {
+      &:last-child {
+        .field-link-featured-content {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  .view-news-article-per-dependency, .view-agenda-events-per-dependency {
+    .views-row {
+      border-bottom: 1px solid #e6e6e6;
+      margin: 0 10px;
+    }
+    .views-field-title {
+      border-bottom: none;
+      padding-bottom: 0px;
+      margin-left: 0;
+      a {
+        font-weight: 400;
+      }
+    }
+    .field-date-updated-information, .field-date-agenda {
+      @include font-size(12px);
+      font-style: italic;
+      padding-bottom: 10px;
+    }
+    .pager {
+      margin-top: 15px;
+      padding-top: 0;
+    }
+  }
+}
+
+
+
+// Icons for the fields of the sidebar second
+//----------------------
+
+// .pane-node-field-tax-project-area,
+// .pane-node-field-tax-subarea
+.pane-node-field-link-about,
+.pane-node-field-tax-project-type {
+  .title,
+  .field-label {
+    @include icon-before(info);
+  }
+}
+
+.pane-node-field-tax-project-area {
+  .title,
+  .field-label {
+    @include icon-before(webwindow);
+  }
+}
+.pane-node-field-tax-subarea {
+  .title,
+  .field-label {
+    @include icon-before(integration);
+  }
+}
+
+.pane-bundle-fpp-files,
+.pane-node-field-file-attachment {
+  .pane-title,
+  .field-label {
+    @include icon-before(download);
+  }
+}
+
+.pane-bundle-fpp-contacts,
+.pane-contacts-professor-contact-panel-pane-1 {
+  .pane-title,
+  .field-label {
+    @include icon-before(contact);
+  }
+}
+
+.pane-bundle-fpp-links,
+.pane-node-field-link-related,
+.paragraphs-item-paragraph-links,
+.pane-field-collection-item-field-link-related {
+  .pane-title,
+  .field-label,
+  .field-text-paragraph-title {
+    @include icon-before(link);
+  }
+}
+
+.pane-node-field-link-featured-content,
+.pane-field-collection-item-field-link-featured-content {
+  .pane-title,
+  .field-label {
+    @include icon-before(medal);
+  }
+}
+
+.pane-node-field-eref-campus {
+  .pane-title,
+  .field-label {
+    @include icon-before(location);
+  }
+}
+
+.pane-node-field-text-university-title {
+  .pane-title,
+  .field-label {
+    @include icon-before(graduation);
+  }
+}
+
+.pane-node-field-text-academic-degree {
+  .pane-title,
+  .field-label {
+    @include icon-before(medal);
+  }
+}
+
+.pane-academic-programs-node-panel-pane-1,
+.pane-academic-offer-study-plan-per-node-panel-pane-1,
+.pane-node-field-link-academic-offer,
+.pane-node-field-tax-study-plan-mode {
+  .title,
+  .field-label {
+    @include icon-before(books);
+  }
+}
+
+.pane-news-article-per-dependency-panel-pane-1,
+.pane-news-news-per-dependency-panel-pane-1 {
+  .pane-title,
+  .field-label {
+    @include icon-before(news);
+  }
+}
+
+.pane-agenda-events-per-dependency-panel-pane-2, .pane-node-field-text-schedule {
+  .pane-title,
+  .field-label {
+    @include icon-before(date-time);
+  }
+}
+
+.pane-node-field-tax-academic-mode {
+  .pane-title,
+  .field-label {
+    @include icon-before(date);
+  }
+}
+
+// .pane-node-field-eref-school {
+.school-sidebar,
+.pane-field-collection-item-field-eref-school {
+  .pane-title,
+  .field-label,
+  .pane-title {
+    @include icon-before(school);
+  }
+}
+
+.pane-bundle-fpp-hour {
+  .pane-title,
+  .field-label {
+    @include icon-before(time);
+  }
+}
+
+.pane-node-field-parg-featured-content {
+  .paragraphs-item-paragraph-video {
+    .field-text-paragraph-title {
+      @include icon-before(videos);
+    }
+  }
+  .paragraphs-item-paragraph-image, .paragraphs-item-paragraph-gallery {
+    .field-text-paragraph-title {
+      @include icon-before(star);
+    }
+  }
+}
+
+// Administrative contacts pane
+.pane-relation-unit-administrative-contacts-panel-pane-1,
+.pane-relation-unit-direction-panel-pane-1,
+.pane-relation-unit-secretary-panel-pane-1,
+.pane-bundle-fpp-contacts,
+.pane-contacts-professor-contact-panel-pane-1 {
+  line-height: 18px;
+  .pane-content {
+    padding: 20px;
+  }
+  h2 {
+    @include icon-before(contact);
+  }
+  h3.area {
+    @include font-size(14px);
+    margin-bottom: 0;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
+  a {
+    color: #333;
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+  .views-row {
+    border-bottom: 1px solid $color-divider;
+    padding: 10px 0;
+  }
+  .contact {
+  }
+  .name, .field-name-person {
+    @include font-size(12px);
+    font-weight: 500;
+  }
+  .rol, .field-text-rol, .field-text-description p {
+    @include font-size(11px);
+    font-style: italic;
+    color: #999;
+  }
+  .telephone, .email, .field-telephone, .field-email, .fax {
+    @include font-size(11px);
+    color: #4d4d4d;
+    &:before {
+      margin-right: 10px;
+    }
+  }
+  .telephone, .field-telephone {
+    @include icon-before(phone);
+  }
+  .email, .field-email {
+    @include icon-before(email);
+  }
+  .fax {
+    @include icon-before(fax);
+  }
+  .field-eref-contact {
+    font-size: 12px !important;
+    padding: 0px;
+    margin-left: 0;
+  }
+}
+
+.pane-relation-unit-direction-panel-pane-1,
+.pane-relation-unit-secretary-panel-pane-1 {
+  .pane-content {
+    padding: 0 20px 0 20px;
+  }
+}
+
+.view-location-per-node .view-display-id-panel_pane_1 {
+  @include font-size(13px);
+  margin: 20px;
+  padding: 20px;
+  border-left: 5px solid $silver;
+
+  .campus a {
+    font-weight: 400;
+    color: $black;
+    &:hover {
+      color: color-link-hover;
+    }
+  }
+
+}
+
+// Location per node: Map/Address
+
+.view-location-per-node {
+  @include font-size(13px);
+  // margin: 20px 0;
+
+  // Map
+  &.view-display-id-panel_pane_2 {
+    @include font-size(13px);
+  }
+
+  // Map link
+  &.view-display-id-panel_pane_4 {
+    text-align: right;
+  }
+  // Address
+  &.view-display-id-panel_pane_1 {
+    margin-left: 20px;
+    padding-left: 10px;
+    border-left: 5px solid $silver;
+    margin-bottom: 20px;
+  }
+}
+
+.field-parg-sidebar-items{
+  .entity-paragraphs-item{
+    margin: 20px 0;
+  }
+}

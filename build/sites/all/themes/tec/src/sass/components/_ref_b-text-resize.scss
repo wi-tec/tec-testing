@@ -1,0 +1,111 @@
+// CSS BASE
+//----------------------------------------------
+
+#text_resize_clear {
+  clear: both;
+}
+a#text_resize_increase {
+  background: url(aBig.gif) no-repeat 0 0;
+  display: block;
+  float: right;
+  width: 28px;
+  height: 27px;
+  margin: 6px 0 0 0;
+  outline: none;
+  text-indent: -9000px;
+  cursor: pointer;
+}
+a#text_resize_reset {
+  background: url(a_reset.gif) no-repeat 0 0;
+  display: block;
+  float: right;
+  width: 25px;
+  height: 24px;
+  margin: 9px 0 0 3px;
+  outline: none;
+  text-indent: -9000px;
+  cursor: pointer;
+}
+a#text_resize_decrease {
+  background: url(aSmall.gif) no-repeat 0 0;
+  display: block;
+  float: right;
+  width: 23px;
+  height: 21px;
+  margin: 12px 0 0 3px;
+  outline: none;
+  text-indent: -9000px;
+  cursor: pointer;
+}
+
+// SCSS BASE
+//----------------------------------------------
+
+#text_resize_clear {
+  clear: both;
+}
+a {
+  &#text_resize_increase,
+  &#text_resize_reset,
+  &#text_resize_decrease {
+    display: block;
+    float: right;
+    outline: none;
+    text-indent: -9000px;
+    cursor: pointer;
+  }
+  &#text_resize_increase {
+    margin: 6px 0 0;
+    width: 28px;
+    height: 27px;
+    background: url(aBig.gif) no-repeat 0 0;
+  }
+  &#text_resize_reset {
+    margin: 9px 0 0 3px;
+    width: 25px;
+    height: 24px;
+    background: url(a_reset.gif) no-repeat 0 0;
+  }
+  &#text_resize_decrease {
+    margin: 12px 0 0 3px;
+    width: 23px;
+    height: 21px;
+    background: url(aSmall.gif) no-repeat 0 0;
+  }
+}
+
+// SCSS TEC V1
+//----------------------------------------------
+
+// Text resize buttons
+.b-text-resize {
+  float: right;
+  height: 24px;
+  padding: 0 10px;
+
+  a#text_resize_increase,
+  a#text_resize_reset,
+  a#text_resize_decrease {
+    @include size(24px);
+    margin: 0;
+    padding: 0 20px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+    color: #fff;
+  }
+
+  a#text_resize_increase {
+    @include bg-img(icons/nav/a_more, 26px);
+  }
+  a#text_resize_decrease {
+    @include bg-img(icons/nav/a_minus, 22px);
+  }
+}
+
+
+// SCSS TEC V2
+//----------------------------------------------
+
+
+
+

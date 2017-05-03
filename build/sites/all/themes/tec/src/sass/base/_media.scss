@@ -1,0 +1,433 @@
+// MEDIA
+//----------------------------------------------
+
+.media {
+  display: inline;
+  img {
+    height: auto!important;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+  img[style~="left;"] {
+    margin-right: 20px;
+  }
+  img[style~="right;"] {
+    margin-left: 20px;
+  }
+  @include breakpoint($m) {
+    img[style~="left;"],
+    img[style~="right;"] {
+      max-width: 50%;
+    }
+  }
+}
+
+
+//----------------------------------------------
+// VIDEOS
+//----------------------------------------------
+.video-embed-description {
+  text-align: center;
+}
+
+//----------------------------------------------
+// IMAGES
+//----------------------------------------------
+img, media {
+  height: auto;
+  max-width: 100%;
+}
+
+//----------------------------------------------
+// FILE ICONS
+//----------------------------------------------
+img.file-icon {
+  width: 18px;
+  max-width: 18px;
+  height: auto;
+  // vertical-align: bottom;
+}
+
+// Hide image and file size from Procedures and Services (page-node-18)
+span.process-file {
+  img, span.file-size {display: none}
+  span.file a {
+    @include size(18px);
+    @include font-size(0px);
+    line-height: 0;
+    @include icon-before(document);
+    &:before {
+      @include font-size(18px);
+    }
+  }
+}
+
+
+//----------------------------------------------
+// FIGURE
+//----------------------------------------------
+figure {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+figcaption {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px !important;
+  font-size: 80%;
+  line-height: 1.2;
+  color: #fff;
+  background: rgba(0,0,0, 0.5);;
+  a & {
+    color: #fff;
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+//----------------------------------------------
+// FLEXSLIDER
+//----------------------------------------------
+.flexslider {
+  margin: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+  position: relative;
+  z-index: 1;
+  img {
+    display: block;
+  }
+
+  // DIRECTION ARROWS
+  //--------------------------------------------
+  .flex-direction-nav {
+    a {
+      .field-name-field-paragraphs-contenido & {
+        top: 40%;
+      }
+      overflow: visible;
+      text-shadow: none;
+      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+      &.flex-prev, &.flex-next {
+        // display: block;
+        opacity: .7;
+        &:hover {
+          opacity: 1;
+        }
+        &:before {
+          @include font-size(56px);
+          font-family: $icon;
+          line-height: 100%;
+          width: 40px;
+          text-align: center;
+        }
+      }
+      &.flex-prev {
+        left: 0;
+        @include icon-before(carousel_arrow1);
+      }
+      &.flex-next {
+        right: 0;
+        @include icon-before(carousel_arrow2);
+      }
+    }
+  }
+
+  // PAGING CONTROLS
+  //--------------------------------------------
+  .flex-control-nav {
+    // li {
+    //   @extend %inline-block;
+    //   margin: 0 6px;
+    // }
+  }
+
+  // Paging Controls - Thumbnails
+  //--------------------------------------------
+  .flex-control-thumbs {
+    bottom: 0;
+    margin: 0;
+    // li {
+    //   @include gallery(3);
+    //   margin-top: 10px;
+    //   margin-bottom: 10px;
+    //   @media (max-width: $m) {
+    //     @include gallery(4);
+    //   }
+    //   @media (max-width: $s) {
+    //     @include gallery(6);
+    //   }
+    // }
+  }
+
+  // Paging Controls - Dots
+  //--------------------------------------------
+  .flex-control-paging {
+    li a {
+      width: 12px;
+      height: 12px;
+      border-radius: 100%;
+      background: $carousel-link;
+      box-shadow: none;
+      &:hover {
+        background: $carousel-hover;
+      }
+      &.flex-active {
+        background: $carousel-active;
+      }
+    }
+  }
+
+  // CAPTION
+  //--------------------------------------------
+  .flex-caption {
+    // @extend .media-caption;
+  }
+}
+
+// Paging Controls Carousel
+//----------------------------------------------
+#carousel-controls {
+  li img {
+    transition: all 250ms ease-in-out;
+    opacity: .7;
+    &:hover {
+      opacity: 1;
+    }
+  }
+  a.flex-prev, a.flex-next {
+    display: block;
+  }
+  img {
+    padding: 1px 1px 0 0;
+  }
+}
+
+//----------------------------------------------
+// GALLERY FORMATTER
+//----------------------------------------------
+
+// .galleryformatter-nostyle{
+//   padding: 20px;
+//   background: $silver;
+// }
+
+.galleryformatter-nostyle,
+.galleryformatter-nostyle .gallery-slides,
+.galleryformatter-nostyle .gallery-thumbs {
+  position: relative;
+  @include span(full);
+  @include clearfix;
+  margin-bottom: 10px;
+  img {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+// Icons
+//----------------------------------------------
+.galleryformatter-nostyle {
+  .view-full,
+  .prev-slide.slide-button,
+  .next-slide.slide-button,
+  .arrow {
+    font-size: 0;
+    line-height: 0;
+    text-align: center;
+    &:before {
+      font-family: $icon;
+      width: auto;
+      height: 100%;
+      line-height: 100%;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  }
+}
+
+// Gallery Slides
+//----------------------------------------------
+.galleryformatter-nostyle .gallery-slides {
+  .gallery-frame {
+    li.gallery-slide {
+      figure {
+        position: relative;
+      }
+      figcaption {
+        max-width: 100%;
+      }
+    }
+    // View full link
+    a .view-full {
+      @include icon-before(search);
+      top: 20px;
+      left: 20px;
+      text-align: center;
+      border-radius: 100%;
+      background: rgba(255,255,255, 0.5);
+      color: $tec-red;
+      &:before {
+        @include font-size(32px);
+        width: 56px;
+        height: 56px;
+        line-height: 56px;
+      }
+        &:hover {
+          color: $tec-blue;
+        }
+    }
+    // Slide arrows
+    .prev-slide.slide-button,
+    .next-slide.slide-button {
+      &:before {
+        @include font-size(56px);
+        color: #fff;
+      }
+    }
+    .prev-slide.slide-button {
+      @include icon-before(carousel_arrow1);
+    }
+    .next-slide.slide-button {
+      @include icon-before(carousel_arrow2);
+    }
+  }
+}
+
+// Gallery Thumbs
+//----------------------------------------------
+.galleryformatter-nostyle .gallery-thumbs {
+  .wrapper {
+    @include span(full);
+    position: relative;
+    z-index: 4;
+    margin-bottom: 10px;
+  }
+  .arrow {
+    position: relative;
+    z-index: 8;
+    &.back, &.forward {
+      @include span(6);
+    }
+  }
+  .arrow {
+      background: $tec-red;
+      color: white;
+    &.back {
+      clear: right;
+      @include icon-before(carousel_arrow1);
+    }
+    &.forward {
+      @include last;
+      @include icon-before(carousel_arrow2);
+    }
+    &:before {
+      @include font-size(28px);
+      width: 100%;
+    }
+  }
+}
+@include breakpoint($m) {
+
+  .galleryformatter-nostyle .gallery-slides {
+    .gallery-frame {
+      li.gallery-slide {
+        figcaption {
+          max-width: 50%;
+        }
+      }
+    }
+  }
+
+  .galleryformatter-nostyle .gallery-thumbs {
+    .wrapper {
+      @include span(11);
+      @include push(.5);
+      margin-bottom: 0;
+    }
+    .arrow {
+      background: transparent;
+      color: $tec-red;
+      &.back, &.forward {
+        @include span(.5);
+      }
+    }
+    .arrow {
+      &.back {
+        @include pull(11.5);
+      }
+      &.forward {
+        @include last;
+      }
+      &:before {
+        @include font-size(72px);
+        width: 20px!important;
+      }
+    }
+  }
+}
+
+
+
+
+
+//----------------------------------------------
+// SLICK
+//----------------------------------------------
+
+.slick {
+
+  .slick-arrow {
+    &::before {
+      color: #fff;
+    }
+    &:hover::before {
+      color: $tec-red;
+    }
+  }
+
+  .media-icon--lightbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -40px 0 0 -40px;
+    height:80px;
+    width:80px;
+    border-radius: 100%;
+    background: rgba(255,255,255,.3);
+    &::before, &::after {
+      content: '';
+      display: block;
+      position: absolute;
+    }
+    &:before {
+      height:30%;
+      width:30%;
+      top: 30%;
+      left: 80%;
+      border-radius:50%;
+      background-color: transparent;
+      border: 5px solid $tec-red;
+    }
+    &:after {
+      left: 106%;
+      top: 50%;
+      transform:rotate(-40deg);
+      height: 32.5%;
+      width:7.5%;
+      background-color: $tec-red;
+      border-radius: 15px;
+    }
+  }
+}

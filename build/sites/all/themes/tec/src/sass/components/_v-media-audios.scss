@@ -1,0 +1,67 @@
+.media-audios-body{
+  @include font-size(12px);
+  color: $tec-gray;
+}
+
+.views-widget-filter-field_date_media_value{
+  label {
+    //@include font-size(14px);
+    //font-weight: 500;
+    text-transform: uppercase;
+  }
+}
+
+//Tiltle styles
+.pane-media-content-panel-pane-2,
+.pane-media-content-media-impacto-tec-panel-pane,
+.pane-media-content-panel-pane-6
+{
+  h2.pane-title{
+    margin: 0px;
+    display: inline-block;
+    background-color: $viral;
+    color: $white;
+    padding: 10px;
+    @include font-size(12px);
+    @include icon-before(headset);
+  }
+}
+
+.v-media-audios{
+  border-top: 2px $viral solid;
+  .views-row{
+    min-height: 180px;
+    margin: 20px 0;
+
+    background-color: #f2f2f2;
+
+    .title {
+      display: inline-block;
+      padding: 0 15px 0 15px;
+      margin: 15px 0 0 0;
+      @include font-size(16px);
+      font-style: italic;
+
+      a {
+        color: $icon-blue;
+      }
+    }
+    .description{
+      padding: 0 15px 0 15px;
+      @include font-size(14px);
+      color: $tec-gray;
+    }
+    .date{
+      padding: 0 15px 0 15px;
+      margin: 0 0 15px 0;
+      @include font-size(10px);
+      font-style: italic;
+      color: $tec-gray;
+    }
+    .audio{
+      iframe{
+        height: 170px;
+      }
+    }
+  }
+}

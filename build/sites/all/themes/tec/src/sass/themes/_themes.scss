@@ -1,0 +1,41 @@
+//----------------------------------------------
+// SECTION THEMES
+//----------------------------------------------
+
+@mixin theme($name, $color) {
+  .#{$name} {
+
+    .l-top-bar {
+      background: $color;
+    }
+
+    h1.page-title {
+      border-bottom: 2px solid $color;
+    }
+
+    .breadcrumb {
+      border-left: 8px solid $color;
+    }
+
+    /*
+    a:link, a:visited, a:active, li a.active {
+      &:hover {
+        color: $color;
+      }
+    }
+    */
+
+  }
+}
+
+$themes: (
+  theme-estudiantes: $estudiantes,
+  theme-profesores: $profesores,
+  theme-investigadores: $investigadores,
+  theme-colaboradores: $colaboradores
+) !default;
+
+// Function
+@each $theme, $color in $themes {
+  @include theme($theme, $color);
+}

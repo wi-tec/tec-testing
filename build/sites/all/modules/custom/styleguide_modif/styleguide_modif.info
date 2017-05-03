@@ -1,0 +1,6 @@
+name        = Style guide modifier
+description = Modifier files for the Style Guide elements
+core        = 7.x
+package     = Custom
+
+dependencies[] = styleguide

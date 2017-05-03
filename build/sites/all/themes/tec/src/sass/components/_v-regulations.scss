@@ -1,0 +1,70 @@
+// REGULATIONS
+//----------------------------------------------
+.view-regulations,
+.view-regulations-content {
+
+  //width: 70%;
+
+  .view-header {
+    padding: 10px;
+    background-color: $silver;
+    border: 1px solid $darkgrey;
+    border-bottom: 0;
+  }
+
+  .views-row {
+    display: block;
+    padding: 10px;
+    border: 1px solid $darkgrey;
+    border-top: 0;
+    a {
+      @include font-size(14px);
+    }
+  }
+
+  .views-row-1 {
+    border-top: 1px solid $darkgrey;
+  }
+
+  .view-footer {
+    float: right;
+    margin: 20px 0 0 0;
+    a {
+      padding: 6px 8px;
+      box-shadow: none;
+      border: solid 1px $tec-blue-light;
+      border-radius: 2px;
+      background: transparent;
+      color: $tec-blue-light;
+      transition: all 250ms ease-in-out;
+      &:hover {
+        cursor: pointer;
+        background: $tec-blue-light;
+        color: $white;
+      }
+    }
+  }
+}
+
+.view-regulations-by-term {
+
+  .views-row {
+    display: block;
+    padding: 10px;
+    border: 1px solid $darkgrey;
+    border-bottom: 0;
+    &:last-child {
+      border-bottom: 1px solid $darkgrey;
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+

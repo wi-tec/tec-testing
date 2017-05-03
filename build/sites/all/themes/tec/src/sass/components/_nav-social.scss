@@ -1,0 +1,65 @@
+// SOCIAL MENU
+//----------------------------------------------
+.nav-social {
+  ul.menu {
+    text-align: right;
+    li {
+      @extend %inline-block;
+      @extend %list-reset;
+      margin: 0 5px;
+    }
+  }
+
+  #facebook, #twitter, #google,
+  #youtube, #foursquare {
+    @include size(24px);
+    font-size: 0;
+    line-height: 0;
+    text-align: center;
+    color: #fff;
+    &:before {
+      @include font-size(18px);
+      line-height: 32px;
+      // line-height: 80px;
+    }
+    &:hover {
+      color: color($color-accent, dark);
+    }
+  }
+
+  #facebook {
+    @include icon-before(facebookfooter);
+    &:hover {
+      color: $facebook;
+    }
+  }
+
+  #twitter {
+    @include icon-before(twitterfooter);
+    &:hover {
+      color: $twitter;
+    }
+  }
+
+  #google {
+    @include icon-before(googleplusfooter);
+    &:hover {
+      color: $google;
+    }
+  }
+
+  #youtube {
+    @include icon-before(youtubefooter);
+    &:hover {
+      color: $youtube;
+    }
+  }
+
+  #foursquare {
+    @include icon-before(foursquarefooter);
+    &:hover {
+      color: $foursquare;
+    }
+  }
+
+}

@@ -1,0 +1,140 @@
+// MENU LANDING PAGES
+//----------------------------------------------
+
+// .page-node-6 {
+//   .l-main {
+//     .l-main-content {
+//       .pane-custom {
+//         @media (min-width: 560px) {
+//           height: 295px !important;
+//         }
+//       }
+//       .pane-3, .pane-4 {
+//         height: 340px !important;
+//       }
+//     }
+//   }
+// }
+
+// .page-node-19, .page-node-21{
+//   .l-main{
+//     .l-main-content{
+//       .pane-custom{
+//         @media (min-width: 560px){
+//           height: 226px !important;
+//         }
+
+//       }
+//     }
+//   }
+// }
+
+// .page-node-28, .page-node-40{
+//   .l-main{
+//     .l-main-content{
+//       .pane-custom{
+//         @media (min-width: 560px){
+//           height: 249px !important;
+//         }
+
+//       }
+//     }
+//   }
+// }
+
+// The following styles are only applied to the 5 menu landing pages
+//----------------------------------------------
+.page-node-6,  // EL TEC
+.page-node-19, // ADMISION
+.page-node-21, // OFERTA ACADEMICA
+.page-node-28, // INVESTIGACION Y EXTENSION
+.page-node-40  // VIDA EN EL CAMPUS
+{
+
+  .entity-paragraphs-item {
+    margin: 0 0 20px 0;
+  }
+
+  .l-featured {
+    .paragraphs-items-field-parg-banner-full {
+      .paragraphs-item-banner {
+        position: relative;
+
+        .field-text-paragraph-description{
+          background: rgba(0,0,0,0.75);
+          margin: 10px;
+          overflow: auto;
+          p {
+            @include font-size(13px);
+            margin: 10px;
+            padding: 10px;
+            color: white;
+
+            &:first-child{
+              display: inline-block;
+              margin-bottom: 0;
+            }
+          }
+          @media (min-width: 825px) {
+            position: absolute;
+            bottom: 0;
+            z-index: 999;
+            width: 40%;
+          }
+
+        }
+      }
+    }
+  }
+
+  .l-main-content {
+    .pane-custom {
+      border: 1px solid $silver;
+      padding: 20px;
+      margin-bottom: 20px;
+      // @include clearfix;
+      // float: left;
+      // background: $white;
+      // width: 100%;
+      //display: block;
+      // @include breakpoint($s) {
+      //   width: 45%;
+      // }
+      // @media (min-width: 560px){
+      //   margin: 10px;
+      // }
+      .pane-title {
+        @include font-size(15px);
+        font-weight: 400;
+        text-transform: uppercase;
+        color: $tec-blue-light;
+        margin-bottom: 15px;
+        display: block;
+      }
+    }
+
+    h3.title {
+      @include font-size(13px);
+      display: inline-block;
+      margin: 0;
+      font-weight: 400;
+      a {
+        color: $color-primary;
+        &:hover {
+          color: $color-accent;
+        }
+      }
+    }
+
+  }
+
+  // Seccion de cajas en el lado derecho del landing page
+  //--------------------------------------------------------------
+  // .l-sidebar-second {
+  //   .landing-page-grid-item {
+  //     float: left;
+  //     width: 100%;
+  //   }
+  // }
+
+}

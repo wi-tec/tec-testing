@@ -1,0 +1,113 @@
+////
+/// Mixins
+/// @group Mixins
+////
+
+/// Sets the `with` and `heigh` of an element.
+///
+/// @name Size
+///
+/// @argument {arglist} $values
+///   The with and height of the element.
+///
+/// @example scss
+///   .element {
+///     @include size(20px, 40px);
+///   }
+///
+/// @example css
+///   .element {
+///     width: 20px;
+///     height: 20px;
+///   }
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+// CLEARFIX
+//----------------------------------------------
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// FONT SIZE
+//----------------------------------------------
+@mixin font-size($font-size) {
+  font-size: $font-size;
+  font-size: $font-size / $base-font-size * 1rem;
+}
+
+// IMAGES
+//----------------------------------------------
+
+// Logo
+//----------------------
+@mixin logo($name, $width: false, $height: false, $position: false) {
+  @extend %replace-image;
+  display: block;
+  background-image: url(../img/#{$name}.svg);
+  .no-svg & {
+    background-image: url(../img/#{$name}.png);
+  }
+  background-repeat: no-repeat;
+  @if $width {
+    width: $width;
+  }
+  @if $height {
+    height: $height;
+  }
+  @if $position {
+    background-position: $position;
+  }
+}
+
+// SVG background image with PNG fallback
+//----------------------
+@mixin bg-img($name, $size: false) {
+  background-image: url(../img/#{$name}.svg);
+  @if $size {
+    background-size: $size;
+  }
+  .no-svg & {
+    background-image: url(../img/#{$name}.png);
+  }
+}
+
+// ICONS
+//----------------------------------------------
+
+// Icon Before
+//----------------------
+@mixin icon-before($content) {
+  @extend %icon-before;
+  &:before {
+    content: icon($content);
+  }
+}
+
+// Icon After
+//----------------------
+@mixin icon-after($content) {
+  @extend %icon-after;
+  &:after {
+    content: icon($content);
+  }
+}
+
+// BUTTONS
+//----------------------------------------------
+@mixin btn($color) {
+  @extend %btn;
+  a {
+    background: $color;
+    border-bottom: 2px solid darken($color, 10%);
+    &:hover {
+      background: darken($color, 10%);
+    }
+  }
+}

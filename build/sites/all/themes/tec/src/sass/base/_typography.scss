@@ -1,0 +1,105 @@
+// TYPOGRAPHY
+//----------------------------------------------
+
+// Global
+//----------------------
+body {
+  font-family: $base-font-family;
+  font-weight: $base-font-weight;
+  color: $base-font-color;
+}
+
+// Headers
+//----------------------
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+  font-weight: $header-font-weight;
+  font-style: normal;
+  line-height: 1.2;
+}
+
+h1 {
+  @include font-size($base-font-size * 2);
+
+  &.page-title {
+    @include font-size(18px);
+
+    text-transform: uppercase;
+    color: $color-primary;
+    border-bottom: 2px solid $color-secondary;
+    padding-bottom: 4px;
+  }
+}
+
+h2 {
+  @include font-size($base-font-size * 1.5);
+}
+
+h3 {
+  @include font-size($base-font-size * 1);
+  &.field-label {
+    color: $tec-blue;
+    @include font-size(15px);
+    text-transform: uppercase;
+  }
+}
+
+// Body
+//----------------------
+p {}
+
+b, strong, label {
+  font-weight: 400;
+}
+
+small {
+  font-size: 80%;
+}
+
+blockquote, q {
+  quotes: none;
+  margin: 0;
+  font-style: italic;
+}
+
+// Links
+//----------------------
+a:link, a:visited, a:active, li a.active {
+  transition: all 250ms ease-in-out;
+  text-decoration: none;
+  color: $color-link;
+  border: none;
+  background-color: transparent;
+
+  &:hover {
+    color: $color-link-hover;
+    outline: 0;
+  }
+}
+
+// Especific titles, Publications page
+//------------------------------------
+.pane-node-field-text-publications h2.pane-title {
+  @include font-size(16px);
+  text-transform: uppercase;
+}
+
+// Grey title for some nodes
+//------------------------------------
+.grey-title {
+  margin-bottom: 10px;
+  margin-top: 20px;
+  a {
+    @include font-size(18px);
+    color: $gray;
+    font-style: italic;
+    &:hover {
+      color: $color-link;
+    }
+  }
+  @include breakpoint($m) {
+    margin-top: 0;
+  }
+}
+
+
