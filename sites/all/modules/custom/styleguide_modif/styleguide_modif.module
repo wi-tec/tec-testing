@@ -1,9 +1,0 @@
-<?php
-
-/**
- * Implements hook_styleguide_alter().
- */
-function styleguide_modif_styleguide_alter(&$items) {
-  // Remove the specified items.
-  unset($items['aggregator_item'], $items['aggregator_summary_item'], $items['figcaption'], $items['figure'], $items['hr'], $items['em'], $items['q'], $items['s'], $items['b'], $items['link'], $items['form-markup'], $items['form-fieldsets'], $items['form-vertical-tabs'], $items['more_help_link'], $items['more_link'], $items['links'], $items['ul_title'], $items['ol_title'], $items['ul_long'], $items['ol_long'], $items['ul_links'], $items['ul_links_inline'], $items['menu_link'], $items['image_flexslider_full'], $items['image_flexslider_thumbnail'], $items['image_focal_point_preview'], $items['image_thumbnail'], $items['image_medium'], $items['image_large'], $items['image_linkit_thumb'], $items['image_media_thumbnail'], $items['image_carousel'], $items['image_colorbox'], $items['image_icon'], $items['image_inline'], $items['image_node'], $items['image_slide'], $items['image_teaser'], $items['image_thumb'], $items['image-horizontal'], $items['image-vertical'], $items['image-inset-horizontal'], $items['image-inset-vertical'], $items['filter_tips'], $items['filter_tips_long'], $items['feed_icon'], $items['maintenance_page'], $items['system_powered_by'], $items['confirm_form'], $items['blockquote'], $items['monospace']);
-}

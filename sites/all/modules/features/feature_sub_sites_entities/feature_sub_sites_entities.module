@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Sub-sites Entities feature.
- */
-
-include_once 'feature_sub_sites_entities.features.inc';

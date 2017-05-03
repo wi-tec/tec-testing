@@ -1,6 +1,0 @@
-name        = Tec - Create Custom Nodes
-description = Create Custom Nodes
-core        = 7.x
-package     = Custom
-
-dependencies[] = webform

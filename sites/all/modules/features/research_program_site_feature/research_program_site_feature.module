@@ -1,7 +1,0 @@
-<?php
-/**
- * @file
- * Code for the Research Program Site Feature feature.
- */
-
-include_once 'research_program_site_feature.features.inc';
