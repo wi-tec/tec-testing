@@ -51,3 +51,18 @@
 *.png     -text diff
 *.phar    -text diff
 *.exe     -text diff
+
+*.ai -text diff
+*.ttf -text diff
+*.woff -text diff
+*.woff2 -text diff
+*.eot -text diff
+*.bcmcap -text diff
+*.otf -text diff
+*.bcmap -text diff
+*.jpeg -text diff
+*.PNG -text diff
+*.JPG -text diff
+*.xap -text diff
+*.pdf -text diff
+*.png.svn-base -text diff
