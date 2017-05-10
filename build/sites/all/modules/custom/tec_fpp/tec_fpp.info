@@ -1,0 +1,9 @@
+name        = TEC - Fieldable Panels Panes
+description = Adds Custom Fieldable Panel Panes Bundles.
+core        = 7.x
+package     = TEC
+
+dependencies[] = ctools
+dependencies[] = panels
+dependencies[] = page_manager
+dependencies[] = fieldable_panels_panes

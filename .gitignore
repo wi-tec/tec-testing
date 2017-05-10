@@ -1,43 +1,50 @@
-# Ignore paths that contain user-generated content.
-/sites/*/files
-/sites/*/private
-/files/*
-/cache
-
-# ** Only works in OSs that support newer versions of fnmatch (Bash 4+)
-/sites/default/**/files
-/sites/default/**/private
-
-# Packages #
-############
-*.7z
-*.dmg
-*.gz
-*.bz2
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
-*.tgz
-
-# Logs and databases #
-######################
+# General ignores
+.DS_Store
+.idea
+*.iml
 *.log
-*.sql
+*.tgz
+node_modules
 
-# OS generated files #
-######################
-.DS_Store*
-ehthumbs.db
-Icon
-Thumbs.db
-._*
+#Database
+*.sql.gz
 
-# Vim generated files #
-######################
-*.un~
+# Aquifer
+.aquifer
+!.aquifer/.gitkeep
 
-# SASS #
-##########
-.sass-cache
+# Apache HTML file.
+html/index.html
+
+# Builds
+artifacts/*
+!artifacts/.gitkeep
+
+# Files
+files/*
+!files/.gitkeep
+
+# Composer
+.vendor
+
+# Settings
+settings.secret.php
+settings.local.php
+!circle/settings.secret.php
+!wercker/settings.secret.php
+
+# Book build output
+docs/_book
+docs/html
+
+# eBook build output
+docs/*.epub
+docs/*.mobi
+docs/*.pdf
+
+# Drupal VM
+default.config.yml
+.vagrant
+
+# Wraith shots.
+wraith/shots

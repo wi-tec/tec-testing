@@ -1,0 +1,328 @@
+<?php
+
+/**
+ * @file
+ * A custom module that facilities the tec's custom node creation.
+ */
+
+/**
+ * Implements hook_help().
+ */
+function tec_create_node_help($path, $arg) {
+  switch ($path) {
+    case 'admin/help#tec_create_node':
+
+      $filepath = dirname(__FILE__) . '/README.md';
+      if (file_exists($filepath)) {
+        $readme = file_get_contents($filepath);
+      }
+      else {
+        $filepath = dirname(__FILE__) . '/README.txt';
+        if (file_exists($filepath)) {
+          $readme = file_get_contents($filepath);
+        }
+      }
+      if (!isset($readme)) {
+        return NULL;
+      }
+      if (module_exists('markdown')) {
+        $filters = module_invoke('markdown', 'filter_info');
+        $info = $filters['filter_markdown'];
+
+        if (function_exists($info['process callback'])) {
+          $output = $info['process callback']($readme, NULL);
+        }
+        else {
+          $output = '<pre>' . $readme . '</pre>';
+        }
+      }
+      else {
+        $output = '<pre>' . $readme . '</pre>';
+      }
+
+      return $output;
+  }
+}
+
+/**
+ * Implementation of hook_menu_alter() for tec_create_node_form().
+ * Create the webform's menu option Create Node
+ */
+function tec_create_node_menu_alter(&$items) {
+  $items['node/%webform_menu/submission/%webform_menu_submission/create'] = array(
+    'title' => t('Create'),
+    'load arguments' => array(1),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('tec_create_node_form',1, 3),
+    'access callback' => 'tec_create_node_access_callback',
+    'access arguments' => array('access all tec create node',1),
+    'type' => MENU_LOCAL_TASK,
+    'weight' => 2,
+
+  );
+}
+
+/**
+ * Validate both if user has the module persmissions and nid of form
+ * is correct.
+ *
+ * @link http://stackoverflow.com/questions/11492216/drupal-7-hook-menu-for-specific-content-type
+ * @param string $tec_create_node_access
+ *   The tec_create_node's permission name.
+ * @param object $node
+ *   The webform node object.
+ * @see tec_create_node_menu_alter()
+ */
+function tec_create_node_access_callback($tec_create_node_access, $node){
+  return $node->nid == 15117 && user_access($tec_create_node_access);
+}
+
+
+
+function tec_create_node_simple_math($number1, $number2, $op) {
+  switch ($op) {
+    case '+':
+      return $number1 + $number2;
+      break;
+
+    case '-':
+      return $number1 + $number2;
+      break;
+
+    case '*':
+      return $number1 * $number2;
+      break;
+
+    case '/':
+      if ($number2!=0) {
+        return $number1 / $number2;
+      }
+      break;
+    default:
+      return t('Are you crazy man.... You are fucking nigga!!!');
+      break;
+  }
+}
+
+/**
+ * Implements hook_permission().
+ * Create permission for the tec_create_node module
+ */
+function tec_create_node_permission() {
+  return array(
+    'access all tec create node' => array(
+      'title' => t('Create nodes from webform results.'),
+      'description' => t('Permission to create nodes from webform results.'),
+    )
+  );
+}
+
+
+/**
+ * Form constructor for create diferents nodes.
+ *
+ *   Create nodes from a single page form
+ * @param object $node
+ *   The webform node object.
+ * @param object $submission
+ *  The submission object.
+ *
+ * @see user_login_form_validate()
+ * @see user_login_form_submit()
+ *
+ * @ingroup forms
+ */
+function tec_create_node_form($form, &$form_state, $node, $submission){
+
+  $form['node_type'] = array(
+    '#type' => 'select',
+    '#title' => t('Plantilla de Sitio a Crear'),
+    '#options' => array(
+      'teacher' => t('Profesor'),
+      'subsite_project' => t('Proyecto de Investigación'),
+      ),
+    '#required' => TRUE,
+    '#default_value' => $submission->data[7][0],
+   );
+
+  $form['node_title'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Título'),
+    '#size' => 30,
+    '#maxlength' => 128,
+    '#required' => TRUE,
+    '#default_value' => $submission->data[8][0],
+  );
+
+  $form['node_user'] = array(
+    '#type' => 'value',
+    '#value' => $submission->data[12][0],
+  );
+
+  $form['submit_button'] = array(
+    '#type' => 'submit',
+    '#value' => t('Crear contenido'),
+  );
+
+  return $form;
+}
+
+/**
+ * Form validation handler for tec_create_node_form().
+ * Validate forms data
+ *
+ * @see tec_create_node_form_submit()
+ */
+function tec_create_node_form_validate($form, &$form_state) {
+
+  // if (!($form_state['values']['title'] > 0)){
+  //   form_set_error('title', t('Price must be a positive number.'));
+  // }
+}
+
+/**
+ * Form submission handler for tec_create_node_form().
+ * Create a new node depends on user selection.
+ *
+ * @see tec_create_node_form_validate()
+ */
+function tec_create_node_form_submit($form, &$form_state) {
+
+  global $user;
+
+  $node = new stdClass();
+  $node->type = $form_state['values']['node_type'];
+  $node->title = $form_state['values']['node_title'];
+  $node->uid = $user->uid;
+  $node->status = 0;
+  $node->language = LANGUAGE_NONE;
+  $node->promote = 0;
+  $node->sticky = 0;
+  $node->comment = 0;
+  $node = node_submit($node);
+  node_save($node);
+  // Load the user we want to add to the group.
+  $account = user_load($form_state['values']['node_user']);
+  // Add the user to the group
+  og_group('node', $node->nid, array(
+    'entity type'       => 'user',
+    'entity'            => $account,
+  ));
+  // Changes the user role in the group (169 = Content Admin in teacher node, 153 = Content Admin in subsite_project node). To find more check the {og_role} db table.
+  if ($node->type == 'teacher') {
+    og_role_grant('node', $node->nid, $account->uid, 169);
+  }
+  elseif ($node->type == 'subsite_project') {
+    og_role_grant('node', $node->nid, $account->uid, 153);
+  }
+  $form_state['redirect']  = '/node/'.$node->nid;
+}
+
+// Auto Publish Node Content Recursively Funcionality
+//-----------------------------------------------------------------
+
+/**
+ * Publish node publications.
+ *
+ * @param array $publication_list
+ *   Array of node's publications
+ *
+ */
+function tec_create_node_publish_publications ($publication_list){
+  // Iterate over each node's publication
+  foreach ($publication_list as $key => $value) {
+    // Load the publication node by ID
+    $publication = node_load($value['target_id']);
+    // Check if publciation node if published
+    if ($publication->status == 0) {
+      $publication->status = 1;
+      node_submit($publication);
+      node_save($publication);
+    }
+  }
+}
+
+/**
+ * Publish node documents.
+ *
+ * @param array $document_list
+ *   Array of node's documents
+ *
+ */
+function tec_create_node_publish_documents ($document_list){
+  // Iterate over each node's publication
+  foreach ($document_list as $key => $value) {
+    // Load the document node by ID
+    $current_document = node_load($value['target_id']);
+    // Check if document node if published
+    if ($current_document->status == 0) {
+      $current_document->status = 1;
+      node_submit($current_document);
+      node_save($current_document);
+    }
+    // Publish documents recursively
+    if (!empty($current_document->field_eref_document_group['und'])) {
+      tec_create_node_publish_documents($current_document->field_eref_document_group['und']);
+    }
+  }
+}
+
+
+/**
+* Publish the children nodes when the father node is published.
+* Check if the node status has been updated
+*
+* @see tec_create_node_publish_publications()
+* @see tec_create_node_publish_documents()
+*
+*/
+function tec_create_node_callback($form, &$form_state){
+
+  $node = node_load($form['#node']->nid);
+  $node_last_status = $form['#node']->status;
+  $node_current_status = $node->status;
+
+  // Validate if node has been published
+  if (($node_last_status == 0) && ($node_current_status == 1)) {
+    if ($node->type == 'teacher'){
+      // Publish publications
+      tec_create_node_publish_publications($node->field_eref_publications['und']);
+    }
+    elseif ($node->type == 'subsite_project') {
+      // Publish publications functions
+      tec_create_node_publish_publications($node->field_eref_publications['und']);
+      // Publish documents functions
+      tec_create_node_publish_documents($node->field_eref_document['und']);
+    }
+  }
+
+  // Node has been unpublished
+  // elseif (($node_last_status == 1) && ($node_current_status == 0)) {
+  //   dpm('Node has been unpublished');
+  //   // iterate in each publication
+  //   // iterate in each publication
+  //   foreach ($node->field_eref_publications['und'] as $key => $value) {
+  //     $publication = node_load($value['target_id']);
+  //     // Check if node publciation if published
+  //     if ($publication->status == 0) {
+  //       $publication->status == 1;
+  //       node_save($publication);
+
+  //     }
+  //   }
+  // }
+}
+
+
+/**
+ * Implementation of hook_form_alter()
+ * Alter the teacher node with the tec_create_node_callback().
+ */
+
+function tec_create_node_form_alter(&$form, &$form_state, $form_id) {
+  // Add custom calbak function
+  if ( $form_id == 'teacher_node_form' || $form_id == 'subsite_project_node_form') {
+    $form['actions']['submit']['#submit'][]='tec_create_node_callback';
+  }
+}
+
