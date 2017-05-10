@@ -45,6 +45,7 @@ Install Dependencies:
 
 Prepare the site:
 
+* `./scripts/local_settings.sh`
 * `./scripts/tec-testing_local_install.sh`
 
 ## Structure
