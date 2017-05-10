@@ -1,8 +1,7 @@
 <?php
-
 /**
-*
-*/
+ * TestCase tests
+ */
 class tecCreateNodeTestCase extends DrupalUnitTestCase
 {
 
@@ -19,6 +18,48 @@ class tecCreateNodeTestCase extends DrupalUnitTestCase
     $message = '1 + 2 = 3';
     $this->assertIdentical($result,3,$message);
   }
+}
+
+
+/**
+ * TestCase tests
+ */
+class TestCase extends DrupalWebTestCase {
+  protected $privileged_user;
+  /**
+   * Simple test info
+   */
+  public static function getInfo() {
+    return array(
+      'name' => 'Test demo web test',
+      'description' => 'Test article content type',
+      'group' => 'TEC',
+      );
+  }
+
+  public function setUp() {
+    // Enable any modules required for the test. This should be an array of
+    // module names.
+    parent::setUp();
+    // Create and log in our privileged user.
+    $this->privileged_user = $this->drupalCreateUser(array(
+      'create article content',
+      ));
+    $this->drupalLogin($this->privileged_user);
+  }
+
+  /**
+    * Tests creation of a Simpletest example node.
+    */
+  public function testArticleCreate() {
+    // Create node to edit.
+    $edit = array();
+    $edit['title'] = $this->randomName(8);
+    $edit["body[und][0][value]"] = $this->randomName(16);
+    $this->drupalPost('node/add/article', $edit, t('Save'));
+    $this->assertText(t('Article @title has been created.', array('@title' => $edit['title'])));
+  }
+
 }
 
 
