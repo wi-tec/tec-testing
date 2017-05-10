@@ -1,12 +1,16 @@
 <?php
 
 /**
- * Implementation of hook_entity_info_alter()
+ * @file
+ * Adds Custom Fieldable Panel Panes Bundles.
  */
 
+/**
+ * Implements hookook_entity_info_alter().
+ */
 function tec_fpp_entity_info_alter(&$entity_info) {
 
-// Text
+  // Adds Text Bundle.
   $entity_info['fieldable_panels_pane']['bundles']['fpp_text'] = array(
     'label'          => t('Text'),
     'description'    => t('Add a custom block of text'),
@@ -21,7 +25,7 @@ function tec_fpp_entity_info_alter(&$entity_info) {
     ),
   );
 
-// Links
+  // Adds Links Bundle.
   $entity_info['fieldable_panels_pane']['bundles']['fpp_links'] = array(
     'label'          => t('Links'),
     'description'    => t('Add a custom set of links'),
@@ -36,7 +40,7 @@ function tec_fpp_entity_info_alter(&$entity_info) {
     ),
   );
 
-// Files
+  // Adds Files Bundle.
   $entity_info['fieldable_panels_pane']['bundles']['fpp_files'] = array(
     'label'          => t('Files'),
     'description'    => t('Add a custom set of files'),
@@ -51,7 +55,7 @@ function tec_fpp_entity_info_alter(&$entity_info) {
     ),
   );
 
-// Image
+  // Adds Image Bundle.
   $entity_info['fieldable_panels_pane']['bundles']['fpp_image'] = array(
     'label'          => t('Image'),
     'description'    => t('Add an image'),
@@ -66,7 +70,7 @@ function tec_fpp_entity_info_alter(&$entity_info) {
     ),
   );
 
-// Video
+  // Adds Video Bundle.
   $entity_info['fieldable_panels_pane']['bundles']['fpp_video'] = array(
     'label'          => t('Video'),
     'description'    => t('Post a <strong>Video</strong> hosted in an external site, such as YouTube or Vimeo.'),
@@ -81,7 +85,7 @@ function tec_fpp_entity_info_alter(&$entity_info) {
     ),
   );
 
-// Gallery
+  // Adds Gallery Bundle.
   $entity_info['fieldable_panels_pane']['bundles']['fpp_gallery'] = array(
     'label'          => t('Gallery'),
     'description'    => t('Add links'),
@@ -96,7 +100,7 @@ function tec_fpp_entity_info_alter(&$entity_info) {
     ),
   );
 
-// Contacts
+  // Adds Contacts Bundle.
   $entity_info['fieldable_panels_pane']['bundles']['fpp_contacts'] = array(
     'label'          => t('Contacts'),
     'description'    => t('Add a custom set of contacts'),
