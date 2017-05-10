@@ -77,6 +77,33 @@ function tec_create_node_access_callback($tec_create_node_access, $node){
   return $node->nid == 15117 && user_access($tec_create_node_access);
 }
 
+
+
+function tec_create_node_simple_math($number1, $number2, $op) {
+  switch ($op) {
+    case '+':
+      return $number1 + $number2;
+      break;
+
+    case '-':
+      return $number1 + $number2;
+      break;
+
+    case '*':
+      return $number1 * $number2;
+      break;
+
+    case /:
+      if ($number2!=0) {
+        return $number1 / $number2;
+      }
+      break;
+    default:
+      return t('Are you crazy man.... You are fucking nigga!!!');
+      break;
+  }
+}
+
 /**
  * Implements hook_permission().
  * Create permission for the tec_create_node module

@@ -1,0 +1,24 @@
+<?php
+
+/**
+*
+*/
+class tecCreateNodeTestCase extends DrupalUnitTestCase
+{
+
+  public static function getInfo() {
+    return array(
+      'name' => 'Tec demo uniot test',
+      'description' =>'',
+      'group' => 'TEC',
+    );
+  }
+
+  public function testTecCreateNodeSimpleMath() {
+    $result = tec_create_node_simple_math(1,2,'+');
+    $message = '1 + 2 = 3';
+    $this->assertIdentical($result,3,$message);
+  }
+}
+
+
