@@ -6,6 +6,9 @@
 *.tgz
 node_modules
 
+#Database
+*.sql.gz
+
 # Aquifer
 .aquifer
 !.aquifer/.gitkeep
