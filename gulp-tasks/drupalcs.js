@@ -17,15 +17,16 @@ gulp.task('drupalcs', function () {
   // Source file defaults to a pattern.
   var extensions = '{php,module,inc,install,test,profile,theme}';
   var sourcePatterns = [
-    'modules/**/*.' + extensions,
-    'themes/**/*.' + extensions,
+    'build/sites/all/modules/custom/**/*.' + extensions,
+    'build/sites/all/modules/features/**/*.' + extensions,
+    'build/sites/all/theme/tec/**/*.' + extensions,
     'tests/behat/**/*.' + extensions,
-    'settings/**/*.' + extensions,
-    '!modules/**/*.features.*',
-    '!modules/**/*.strongarm.*',
-    '!modules/**/*.field_group.inc',
-    '!modules/**/*.views_default.inc',
-    '!modules/**/*.pages_default.inc'
+    'build/sites/default/settings/*.' + extensions,
+    '!build/sites/all/modules/features/**/*.features.*',
+    '!build/sites/all/modules/features/**/*.strongarm.*',
+    '!build/sites/all/modules/features/**/*.field_group.inc',
+    '!build/sites/all/modules/features/**/*.views_default.inc',
+    '!build/sites/all/modules/features/**/*.pages_default.inc'
   ];
 
   return gulp.src(sourcePatterns)
