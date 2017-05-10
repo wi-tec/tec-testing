@@ -93,7 +93,7 @@ function tec_create_node_simple_math($number1, $number2, $op) {
       return $number1 * $number2;
       break;
 
-    case /:
+    case '/':
       if ($number2!=0) {
         return $number1 / $number2;
       }
