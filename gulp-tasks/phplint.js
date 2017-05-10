@@ -15,10 +15,11 @@ gulp.task('phplint', function (cb) {
 
   var extensions = '{php,module,inc,install,test,profile,theme}';
   var sourcePatterns = [
-    'modules/**/*.' + extensions,
-    'themes/**/*.' + extensions,
+    'build/sites/all/modules/custom/**/*.' + extensions,
+    'build/sites/all/modules/features/**/*.' + extensions,
+    'build/sites/all/themes/tec/**/*.' + extensions,
     'tests/behat/**/*.' + extensions,
-    'settings/**/*.' + extensions
+    'build/sites/default/settings*.' + extensions
   ];
   var phpLintOptions = {
     limit: 50
