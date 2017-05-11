@@ -110,6 +110,18 @@ jobs:
     working_directory: /var/www/tecci
     steps:
       - run:
-          name: Try deploy
+          name: Install ahoy
           command: |
-            echo 'Deploying it'
+            apt-get install wget -y
+            wget -q https://github.com/ahoy-cli/ahoy/releases/download/2.0.0-beta1/ahoy-bin-`uname -s`-amd64 -O /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
+      - checkout
+      - run:
+          name: Deploy
+          command: |
+            git config --global user.email "ci@tec.ac.cr"
+            git config --global user.name "CI Bot"
+            echo 'Host *' >> /root/.ssh/config
+            echo '   StrictHostKeyChecking no' >> /root/.ssh/config
+            ahoy deploy artifact "Auto deploy triggered from master branch"
+
+
