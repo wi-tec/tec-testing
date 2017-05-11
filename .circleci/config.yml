@@ -65,6 +65,7 @@ jobs:
       - run:
           name: Build site.
           command: |
+            mkdir /var/www/tec-testing/build/sites/default/files
             chmod 777 -R /var/www/tec-testing/build/sites/default/files
             chmod 777 -R /tmp
             curl `terminus backup:get --element=database tec-testing.dev` -o tec-testing.sql.gz
