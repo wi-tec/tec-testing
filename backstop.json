@@ -20,7 +20,7 @@
   "scenarios": [
     {
       "label": "Homepage",
-      "referenceUrl": "https://www.tec.ac.cr/",
+      "referenceUrl": "http://dev-tec-testing.pantheonsite.io/",
       "url": "http://tec-testing.dev/",
       "hideSelectors": [],
       "removeSelectors": [],
@@ -30,7 +30,8 @@
       ],
       "readyEvent": null,
       "delay": 500,
-      "misMatchThreshold" : 0.1,
+      "misMatchThreshold" : 5,
+      "requireSameDimensions": false,
       "onBeforeScript": "onBefore.js",
       "onReadyScript": "onReady.js"
     }

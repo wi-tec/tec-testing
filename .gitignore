@@ -30,8 +30,7 @@ files/*
 # Settings
 settings.secret.php
 settings.local.php
-!circle/settings.secret.php
-!wercker/settings.secret.php
+!.circleci/settings.local.php
 
 # Book build output
 docs/_book
