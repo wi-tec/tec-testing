@@ -99,6 +99,7 @@ jobs:
           name: Prepare artifacts
           command: |
             tar czf /tmp/backstop_data.tar.gz /var/www/tec-testing/backstop_data
+          when: always
 
       - store_artifacts:
           path: /tmp/backstop_data.tar.gz
