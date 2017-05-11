@@ -9,7 +9,7 @@ jobs:
           MYSQL_ROOT_PASSWORD: drupal
     working_directory: /var/www/tec-testing
     steps:
-      - run: apt-get update -y
+      - run: apt-get update -y && apt-get install python -y
       - run: echo 127.0.0.1 tec-testing.dev | tee -a /etc/hosts
       - checkout
       - restore_cache:
