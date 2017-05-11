@@ -6,4 +6,4 @@ Feature: The site should be available.
   Scenario: The login page exists.
     Given I am an anonymous user
     When I am at "/user"
-    Then I should see "Username"
+    Then I should see "Nombre de usuario"

@@ -77,6 +77,11 @@ jobs:
             # drush master-execute -y
             drush cc all
       - run:
+          name: Start services
+          command: |
+            /etc/init.d/nginx start &
+            /etc/init.d/php5.5-fpm start &
+      - run:
           name: Coding Standards Linters
           command: |
             ./node_modules/.bin/gulp phplint
