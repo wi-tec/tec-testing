@@ -65,7 +65,7 @@ jobs:
       - run:
           name: Build site.
           command: |
-            wget -q `terminus backup:get --element=database tec-testing.dev` -o tec-testing.sql.gz
+            curl `terminus backup:get --element=database tec-testing.dev` -o tec-testing.sql.gz
             cp ./.circleci/settings.local.php ./build/sites/default/
             drush site-set @tec-testing.tec-testing.dev
             gunzip -c tec-testing.sql.gz | drush sqlc
