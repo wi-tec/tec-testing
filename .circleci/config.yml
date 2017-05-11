@@ -85,7 +85,7 @@ jobs:
       - run:
           name: Behat Testing
           command: |
-            ./vendor/bin/behat -p circle
+            ./.vendor/bin/behat -p circle
       - run:
           name: Visual Regression Testing
           command: |
