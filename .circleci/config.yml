@@ -65,6 +65,8 @@ jobs:
       - run:
           name: Build site.
           command: |
+            chmod 777 -R /var/www/tec-testing/build/sites/default/files
+            chmod 777 -R /tmp
             curl `terminus backup:get --element=database tec-testing.dev` -o tec-testing.sql.gz
             cp ./.circleci/settings.local.php ./build/sites/default/
             drush site-set @tec-testing.tec-testing.dev
@@ -92,9 +94,13 @@ jobs:
           name: Visual Regression Testing
           command: |
             npm run backstop
+      - run:
+          name: Prepare artifacts
+          command: |
+            tar czf /tmp/backstop_data.tar.gz /var/www/tec-testing/backstop_data
 
       - store_artifacts:
-          path: /var/www/tec-testing/backstop_data
+          path: /tmp/backstop_data.tar.gz
 
   deploy:
     docker:
