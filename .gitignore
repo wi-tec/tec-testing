@@ -48,3 +48,7 @@ default.config.yml
 
 # Wraith shots.
 wraith/shots
+
+# Backstop
+backstop_data/
+!backstop_data/casper_scripts
