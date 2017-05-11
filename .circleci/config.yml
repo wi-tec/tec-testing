@@ -93,6 +93,7 @@ jobs:
 
       - store_artifacts:
           path: /var/www/tec-testing/backstop_data
+
   deploy:
     docker:
       - image: tbfisher/drupal-nginx:php-7.0.x
@@ -101,4 +102,4 @@ jobs:
       - run:
           name: Try deploy
           command: |
-            echo 'Deploying'
+            echo 'Deploying it'
