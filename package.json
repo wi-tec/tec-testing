@@ -14,5 +14,8 @@
     "sync-exec": "^0.6.2",
     "through2": "^2.0.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "scripts": {
+    "backstop": "backstop reference && backstop test"
+  }
 }
