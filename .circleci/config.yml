@@ -118,12 +118,12 @@ jobs:
   deploy:
     docker:
       - image: tbfisher/drupal-nginx:php-7.0.x
-    working_directory: /var/www/tecci
+    working_directory: /var/www/tec-testing
     steps:
       - run:
           name: Install ahoy
           command: |
-            apt-get install wget -y
+            apt-get update -y && apt-get install wget -y
             wget -q https://github.com/ahoy-cli/ahoy/releases/download/2.0.0-beta1/ahoy-bin-`uname -s`-amd64 -O /usr/local/bin/ahoy && chmod +x /usr/local/bin/ahoy
       - checkout
       - run:
