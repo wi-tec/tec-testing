@@ -21,7 +21,6 @@ default:
       goutte: ~
       selenium2: ~
       base_url: http://tec-testing.dev
-      javascript_session: 'selenium2'
     Drupal\DrupalExtension:
       blackbox: ~
       api_driver: "drupal"
@@ -49,20 +48,9 @@ default:
 circle:
   extensions:
     Behat\MinkExtension:
-      base_url: http://tec-testing.dev:8080
-      selenium2: ~
-      browser_name: chrome
+      base_url: http://tec-testing.dev
     Drupal\DrupalExtension:
       drupal:
-        drupal_root: "/home/ubuntu/tec-testing/build"
+        drupal_root: "/var/www/tec-testing/build"
       drush:
-        root: "/home/ubuntu/tec-testing/build"
-wercker:
-  extensions:
-    Behat\MinkExtension:
-      base_url: http://tec-testing.dev:8080
-      selenium2: ~
-      browser_name: chrome
-    Drupal\DrupalExtension:
-      drupal:
-        drupal_root: "/pipeline/source/build"
+        root: "/var/www/tec-testing/build"
