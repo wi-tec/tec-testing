@@ -1,0 +1,104 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: tbfisher/drupal-nginx:php-5.5.x
+      - image: mariadb:5.5
+        environment:
+          MYSQL_DATABASE: drupal
+          MYSQL_ROOT_PASSWORD: drupal
+    working_directory: /var/www/tec-testing
+    steps:
+      - run: apt-get update -y
+      - run: echo 127.0.0.1 tec-testing.dev | tee -a /etc/hosts
+      - checkout
+      - restore_cache:
+          keys:
+            - npm-cache-{{ checksum "package.json" }}
+            - composer-cache-{{ checksum "composer.lock" }}
+      - run:
+          name: Install Node 6
+          command: |
+            curl "https://deb.nodesource.com/setup_6.x" -o "setup_6.x"
+            chmod +x setup_6.x
+            ./setup_6.x
+            rm setup_6.x
+            apt-get install nodejs -y
+      - run: npm install
+      - save_cache:
+         key: npm-cache-{{ checksum "package.json" }}
+         paths:
+           - node_modules
+      - run:
+          name: Install Composer
+          command: |
+            php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
+            php -r "copy('https://composer.github.io/installer.sig', 'composer-setup.sig');" && \
+            php -r "if (hash_file('SHA384', 'composer-setup.php') === trim(file_get_contents('composer-setup.sig'))) { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;" && \
+            php composer-setup.php && \
+            php -r "unlink('composer-setup.php');"
+            mv composer.phar /usr/bin/composer
+      - run: if [ ! -d ./.vendor ]; then composer install fi
+      - save_cache:
+         key: composer-cache-{{ checksum "composer.lock" }}
+         paths:
+           - .vendor
+      - run:
+          name: Install and configure drush
+          command: |
+            composer global require drush/drush:8.* --no-interaction
+            mkdir -p ~/.drush
+            cp ./.circleci/tec-testing.aliases.drushrc.php ~/.drush
+            drush cc drush
+      - run:
+          name: Configure Nginx
+          command: |
+            cp ./.circleci/tec-testing /etc/nginx/sites-available/default
+      - run:
+          name: Download and Install Terminus and Login Terminus
+          command: |
+            cd /var/www/
+            curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php installer.phar install
+            ln -s /var/www/vendor/bin/terminus /usr/bin/terminus
+            cd /var/www/tec-testing
+            terminus auth:login --machine-token=$PANTHEON_TOKEN
+      - run:
+          name: Build site.
+          command: |
+            wget -q `terminus backup:get --element=database tec-testing.dev` -o tec-testing.sql.gz
+            cp ./.circleci/settings.local.php ./build/sites/default/
+            drush site-set @tec-testing.tec-testing.dev
+            gunzip -c tec-testing.sql.gz | drush sqlc
+            rm tec-testing.sql.gz
+            drush cc drush
+            drush sqlsan -y
+            drush updb -y
+            # drush master-scope local
+            # drush master-execute -y
+            drush cc all
+      - run:
+          name: Coding Standards Linters
+          command: |
+            ./node_modules/.bin/gulp phplint
+            ./node_modules/.bin/gulp drupalcs
+            ./node_modules/.bin/gulp eslint
+      - run:
+          name: Behat Testing
+          command: |
+            ./vendor/bin/behat -p circle
+      - run:
+          name: Visual Regression Testing
+          command: |
+            npm run backstop
+
+      - store_artifacts:
+          path: /var/www/tec-testing/backstop_data
+  deploy:
+    docker:
+      - image: tbfisher/drupal-nginx:php-7.0.x
+    working_directory: /var/www/tecci
+    steps:
+      - run:
+          name: Try deploy
+          command: |
+            echo 'Deploying'
