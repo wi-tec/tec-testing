@@ -38,7 +38,7 @@ jobs:
             php composer-setup.php && \
             php -r "unlink('composer-setup.php');"
             mv composer.phar /usr/bin/composer
-      - run: if [ ! -d ./.vendor ]; then composer install fi
+      - run: if [ ! -d ./.vendor ]; then composer install; fi
       - save_cache:
          key: composer-cache-{{ checksum "composer.lock" }}
          paths:
