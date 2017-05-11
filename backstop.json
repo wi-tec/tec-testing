@@ -20,7 +20,7 @@
   "scenarios": [
     {
       "label": "Homepage",
-      "referenceUrl": "https://www.tec.ac.cr/",
+      "referenceUrl": "http://dev-tec-testing.pantheonsite.io/",
       "url": "http://tec-testing.dev/",
       "hideSelectors": [],
       "removeSelectors": [],
