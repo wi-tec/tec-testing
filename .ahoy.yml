@@ -22,3 +22,26 @@ commands:
       git push origin $BRANCH
       cd ../
       rm -rf $CLONEFOLDER
+
+  deploy_pantheon:
+    usage: Deploy to Pantheon
+    cmd: |
+      BRANCH=$1
+      MESSAGE=$2
+      REPO="ssh://codeserver.dev.66f3b5a3-4428-49b1-bdfb-4cb08cffd555@codeserver.dev.66f3b5a3-4428-49b1-bdfb-4cb08cffd555.drush.in:2222/~/repository.git"
+      CLONEFOLDER=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1`
+      git clone --branch $BRANCH $REPO $CLONEFOLDER || git clone $REPO $CLONEFOLDER
+      cd $CLONEFOLDER
+      #git branch $BRANCH ; git checkout $BRANCH
+      shopt -s extglob
+      rm -rf ./!(.git|.|..)
+      cd ../
+      cp -r build $CLONEFOLDER/
+      #mv $CLONEFOLDER/build/* $CLONEFOLDER
+      #rmdir $CLONEFOLDER/build
+      cd $CLONEFOLDER
+      git add --all .
+      git commit -m "$MESSAGE"
+      git push origin $BRANCH
+      cd ../
+      rm -rf $CLONEFOLDER
