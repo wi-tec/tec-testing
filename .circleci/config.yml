@@ -139,8 +139,8 @@ jobs:
             chmod 644 ~/.ssh/circleci_rsa.pub
             eval $(ssh-agent)
             ssh-add -D
-            #ssh-add
-            ssh-add ~/.ssh/circleci_rsa
+            ssh-add
+            #ssh-add ~/.ssh/circleci_rsa
     
             #cat  ~/.ssh/pantheon_rsa
             #ahoy deploy artifact "Auto deploy triggered from master branch"
