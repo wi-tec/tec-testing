@@ -135,9 +135,10 @@ jobs:
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
             eval $(ssh-agent)
             ssh-add
-            cat $PANTHEON_PRIVATE_KEY >> ~/.ssh/pantheon_rsa
-            chmod 600 ~/.ssh/pantheon_rsa
-            ssh-add ~/.ssh/pantheon_rsa
+            cat $PANTHEON_PRIVATE_KEY
+            #cat $PANTHEON_PRIVATE_KEY >> ~/.ssh/pantheon_rsa
+            #chmod 600 ~/.ssh/pantheon_rsa
+            #ssh-add ~/.ssh/pantheon_rsa
             #ahoy deploy artifact "Auto deploy triggered from master branch"
             #ahoy deploy_pantheon master "Auto deploy triggered from master branch"
 
