@@ -133,14 +133,14 @@ jobs:
             git config --global user.name "CI Bot"
             echo 'Host *' >> /root/.ssh/config
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
-            echo $CIRCLECI_PRIVATE_KEY >> ~/.ssh/circleci_rsa
-            echo $CIRCLECI_PUBLIC_KEY >> ~/.ssh/circleci_rsa.pub
-            chmod 600 ~/.ssh/circleci_rsa
-            chmod 644 ~/.ssh/circleci_rsa.pub
+            echo $CIRCLECI_PRIVATE_KEY >> /root/.ssh/circleci_rsa
+            echo $CIRCLECI_PUBLIC_KEY >> /root/.ssh/circleci_rsa.pub
+            chmod 600 /root/.ssh/circleci_rsa
+            chmod 644 /root/.ssh/circleci_rsa.pub
             eval $(ssh-agent)
             ssh-add -D
             ssh-add
-            #ssh-add ~/.ssh/circleci_rsa
+            ssh-add /root/.ssh/circleci_rsa
     
             #cat  ~/.ssh/pantheon_rsa
             #ahoy deploy artifact "Auto deploy triggered from master branch"
