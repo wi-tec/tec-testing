@@ -128,13 +128,13 @@ jobs:
       - checkout
 
       - run:
-        name: Download and Install Terminus and Login Terminus
-        command: |
-          cd /var/www/
-          curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php installer.phar install
-          ln -s /var/www/vendor/bin/terminus /usr/bin/terminus
-          cd /var/www/tec-testing
-          terminus auth:login --machine-token=$PANTHEON_TOKEN_WB
+          name: Download and Install Terminus and Login Terminus
+          command: |
+            cd /var/www/
+            curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php installer.phar install
+            ln -s /var/www/vendor/bin/terminus /usr/bin/terminus
+            cd /var/www/tec-testing
+            terminus auth:login --machine-token=$PANTHEON_TOKEN_WB
 
       - run:
           name: Deploy
