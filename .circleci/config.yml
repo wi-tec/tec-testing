@@ -138,7 +138,7 @@ jobs:
             chmod 600 ~/.ssh/circleci_rsa
             chmod 644 ~/.ssh/circleci_rsa.pub
             eval $(ssh-agent)
-            #ssh-add -D
+            ssh-add -D
             ssh-add
             ssh-add ~/.ssh/circleci_rsa
     
