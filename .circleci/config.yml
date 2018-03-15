@@ -133,9 +133,11 @@ jobs:
             git config --global user.name "CI Bot"
             echo 'Host *' >> /root/.ssh/config
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
-            eval $(ssh-agent)
             echo $PANTHEON_PRIVATE_KEY >> ~/.ssh/pantheon_rsa
             chmod 600 ~/.ssh/pantheon_rsa
+            cat ~/.ssh/pantheon_rsa
+            ls -la ~/.ssh/pantheon_rsa
+            eval $(ssh-agent)
             ssh-add
             ssh-add ~/.ssh/pantheon_rsa
             cat  ~/.ssh/pantheon_rsa
