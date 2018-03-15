@@ -144,17 +144,17 @@ jobs:
             echo 'Host *' >> /root/.ssh/config
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
 
-            ssh-keygen -q -t rsa -C "CIRCLECI" -f /root/.ssh/circleci -N ""
-
-            terminus ssh-key:add /root/.ssh/circleci
+            ssh-keygen -q -t rsa -C "CIRCLECI" -f /root/.ssh/circleci_rsa -N ""
+            ls -la /root/.ssh/ 
+            #terminus ssh-key:add /root/.ssh/circleci_rsa
             # echo $CIRCLECI_PRIVATE_KEY >> /root/.ssh/circleci_rsa
             # echo $CIRCLECI_PUBLIC_KEY >> /root/.ssh/circleci_rsa.pub
             # chmod 600 /root/.ssh/circleci_rsa
             # chmod 644 /root.ssh/circleci_rsa.pub
             eval $(ssh-agent)
-            ssh-add
+            #ssh-add
             #ahoy deploy artifact "Auto deploy triggered from master branch"
-            ahoy deploy_pantheon master "Auto deploy triggered from master branch"
+            #ahoy deploy_pantheon master "Auto deploy triggered from master branch"
 
 workflows:
   version: 2
