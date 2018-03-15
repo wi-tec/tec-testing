@@ -135,7 +135,6 @@ jobs:
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
             echo $PANTHEON_PRIVATE_KEY >> ~/.ssh/pantheon_rsa
             chmod 600 ~/.ssh/pantheon_rsa
-            cat ~/.ssh/pantheon_rsa
             ls -la ~/.ssh/pantheon_rsa
             eval $(ssh-agent)
             ssh-add
