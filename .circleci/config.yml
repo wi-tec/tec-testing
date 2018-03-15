@@ -136,7 +136,7 @@ jobs:
             echo $CIRCLECI_PRIVATE_KEY >> ~/.ssh/circleci_rsa
             echo $CIRCLECI_PUBLIC_KEY >> ~/.ssh/circleci_rsa.pub
             chmod 600 ~/.ssh/circleci_rsa
-            chmod 644 ~/.ssh/circleci_rsa
+            chmod 644 ~/.ssh/circleci_rsa.pub
             eval $(ssh-agent)
             #ssh-add -D
             ssh-add
