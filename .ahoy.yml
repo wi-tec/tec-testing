@@ -31,24 +31,24 @@ commands:
       REPO="ssh://codeserver.dev.66f3b5a3-4428-49b1-bdfb-4cb08cffd555@codeserver.dev.66f3b5a3-4428-49b1-bdfb-4cb08cffd555.drush.in:2222/~/repository.git"
       CLONEFOLDER=`cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1`
       git clone --branch $BRANCH $REPO $CLONEFOLDER || git clone $REPO $CLONEFOLDER
-      echo 'FUERA DEL CLONE FOLDER'
-      ls -la
+      # echo 'FUERA DEL CLONE FOLDER'
+      # ls -la
       cd $CLONEFOLDER
-      echo 'DENTRO DEL CLONE FOLDER'
-      ls -la
+      # echo 'DENTRO DEL CLONE FOLDER'
+      # ls -la
       #git branch $BRANCH ; git checkout $BRANCH
       shopt -s extglob
       rm -rf ./!(.git|.|..)
       cd ../
       cp -r build/ $CLONEFOLDER/
-      echo 'FUERA del CLONE FOLDER DESPUES DEL COPY'
-      ls -la
+      # echo 'FUERA del CLONE FOLDER DESPUES DEL COPY'
+      # ls -la
       mv $CLONEFOLDER/build/* $CLONEFOLDER
       rmdir $CLONEFOLDER/build
       cd $CLONEFOLDER
 
-      echo 'DENTRO DEL CLONE FOLDER DESPUES DEL COPY'
-      ls -la
+      # echo 'DENTRO DEL CLONE FOLDER DESPUES DEL COPY'
+      # ls -la
       git add --all .
       git commit -m "$MESSAGE"
       git push origin $BRANCH
