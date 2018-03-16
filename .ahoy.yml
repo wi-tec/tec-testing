@@ -36,7 +36,7 @@ commands:
       shopt -s extglob
       rm -rf ./!(.git|.|..)
       cd ../
-      cp -r build $CLONEFOLDER/
+      cp -r build/ $CLONEFOLDER/
       #mv $CLONEFOLDER/build/* $CLONEFOLDER
       #rmdir $CLONEFOLDER/build
       cd $CLONEFOLDER
