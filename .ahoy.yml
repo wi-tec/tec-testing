@@ -35,6 +35,7 @@ commands:
       ls -la
       cd $CLONEFOLDER
       echo 'DENTRO DEL CLONE FOLDER'
+      ls -la
       #git branch $BRANCH ; git checkout $BRANCH
       shopt -s extglob
       rm -rf ./!(.git|.|..)
@@ -42,8 +43,8 @@ commands:
       cp -r build/ $CLONEFOLDER/
       echo 'FUERA del CLONE FOLDER DESPUES DEL COPY'
       ls -la
-      #mv $CLONEFOLDER/build/* $CLONEFOLDER
-      #rmdir $CLONEFOLDER/build
+      mv $CLONEFOLDER/build/* $CLONEFOLDER
+      rmdir $CLONEFOLDER/build
       cd $CLONEFOLDER
 
       echo 'DENTRO DEL CLONE FOLDER DESPUES DEL COPY'
