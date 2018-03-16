@@ -150,7 +150,7 @@ jobs:
             echo 'Host *' >> /root/.ssh/config
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
 
-            cat /root/.ssh/config
+            # cat /root/.ssh/config
 
             # ssh-keygen -f ~/.ssh/circleci_rsa -t rsa -N ''
             ssh-keygen -q -t rsa -N '' -f /root/.ssh/circleci_rsa 
