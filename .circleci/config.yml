@@ -164,7 +164,9 @@ jobs:
             ssh-add /root/.ssh/circleci_rsa
             terminus ssh-key:add /root/.ssh/circleci_rsa.pub
             #ahoy deploy artifact "Auto deploy triggered from master branch"
+            ls -la
             ahoy deploy_pantheon master "Auto deploy triggered from master branch"
+            ls -la
 
 workflows:
   version: 2
