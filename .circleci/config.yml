@@ -144,7 +144,7 @@ jobs:
 
 
 
-            echo 'Host *.66f3b5a3-4428-49b1-bdfb-4cb08cffd555.drush.in' >> /root/.ssh/config
+            echo 'Host *.PANTHEON_SITE_UUID.drush.in' >> /root/.ssh/config
             echo '   IdentityFile ~/.ssh/circleci_rsa' >> /root/.ssh/config
 
             echo 'Host *' >> /root/.ssh/config
