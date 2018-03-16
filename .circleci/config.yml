@@ -142,11 +142,14 @@ jobs:
 
 
       - run:
-          name: Create circle_rsa
+          name: Create circle rsa
           command: |
             echo 'Host *.PANTHEON_SITE_UUID.drush.in' >> /root/.ssh/config
             echo '   IdentityFile ~/.ssh/circleci_rsa' >> /root/.ssh/config
-            ssh-keygen -q -t rsa -N '' -f /root/.ssh/circleci_rsa
+            
+            if [ ! -f /root/.ssh/circleci_rsa ]; then
+                ssh-keygen -q -t rsa -N '' -f /root/.ssh/circleci_rsa
+            fi
             eval $(ssh-agent)
             
 
