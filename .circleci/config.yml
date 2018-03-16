@@ -141,11 +141,19 @@ jobs:
           command: |
             git config --global user.email "ci@tec.ac.cr"
             git config --global user.name "CI Bot"
+
+
+
+            echo 'Host *.66f3b5a3-4428-49b1-bdfb-4cb08cffd555.drush.in' >> /root/.ssh/config
+            echo '   IdentityFile ~/.ssh/circleci_rsa' >> /root/.ssh/config
+
             echo 'Host *' >> /root/.ssh/config
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
 
+            cat /root/.ssh/config
+
             # ssh-keygen -f ~/.ssh/circleci_rsa -t rsa -N ''
-            # ssh-keygen -q -t rsa -N '' -f /root/.ssh/circleci_rsa 
+            ssh-keygen -q -t rsa -N '' -f /root/.ssh/circleci_rsa 
             # terminus ssh-key:add /root/.ssh/circleci_rsa.pub
             # echo $CIRCLECI_PRIVATE_KEY >> /root/.ssh/circleci_rsa
             # echo $CIRCLECI_PUBLIC_KEY >> /root/.ssh/circleci_rsa.pub
@@ -153,7 +161,8 @@ jobs:
             # chmod 644 /root.ssh/circleci_rsa.pub
             eval $(ssh-agent)
             ssh-add
-            terminus ssh-key:add /root/.ssh/id_rsa.pub
+            ssh-add /root/.ssh/circleci_rsa
+            terminus ssh-key:add /root/.ssh/circleci_rsa.pub
             #ahoy deploy artifact "Auto deploy triggered from master branch"
             ahoy deploy_pantheon master "Auto deploy triggered from master branch"
 
