@@ -144,8 +144,9 @@ jobs:
             echo 'Host *' >> /root/.ssh/config
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
 
-            ssh-keygen -q -t rsa -f /root/.ssh/circleci_rsa -N ''
-            ls -la /root/.ssh/ 
+            ssh-keygen -f ~/.ssh/circleci_rsa -t rsa -N ''
+            # ssh-keygen -q -t rsa -N '' -f ~/.ssh/circleci_rsa 
+            ls -la ~/.ssh/ 
             terminus ssh-key:add /root/.ssh/circleci_rsa
             # echo $CIRCLECI_PRIVATE_KEY >> /root/.ssh/circleci_rsa
             # echo $CIRCLECI_PUBLIC_KEY >> /root/.ssh/circleci_rsa.pub
