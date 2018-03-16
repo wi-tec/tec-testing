@@ -154,7 +154,7 @@ jobs:
             # eval $(ssh-agent)
             #ssh-add
             #ahoy deploy artifact "Auto deploy triggered from master branch"
-            #ahoy deploy_pantheon master "Auto deploy triggered from master branch"
+            ahoy deploy_pantheon master "Auto deploy triggered from master branch"
 
 workflows:
   version: 2
