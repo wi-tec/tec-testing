@@ -138,7 +138,7 @@ jobs:
 
       - restore_cache:
           keys: 
-            - v1-circleci_rsa-cache-{{ .Environment.PANTHEON_SITE_UUID }}
+            - v1-circleci-rsa-cache-{{ .Environment.PANTHEON_SITE_UUID }}
 
 
       - run:
@@ -148,11 +148,10 @@ jobs:
             echo '   IdentityFile ~/.ssh/circleci_rsa' >> /root/.ssh/config
             ssh-keygen -q -t rsa -N '' -f /root/.ssh/circleci_rsa
             eval $(ssh-agent)
-            ssh-add /root/.ssh/circleci_rsa
-            terminus ssh-key:add /root/.ssh/circleci_rsa.pub
+            
 
       - save_cache:
-          key: v1-circleci_rsa-cache-{{ .Environment.PANTHEON_SITE_UUID }}
+          key: v1-circleci-rsa-cache-{{ .Environment.PANTHEON_SITE_UUID }}
           paths:
             - /root/.ssh/circleci_rsa
             - /root/.ssh/circleci_rsa.pub
@@ -179,7 +178,8 @@ jobs:
             # chmod 644 /root.ssh/circleci_rsa.pub
             eval $(ssh-agent)
             ssh-add
-
+            ssh-add /root/.ssh/circleci_rsa
+            terminus ssh-key:add /root/.ssh/circleci_rsa.pub
             #ahoy deploy artifact "Auto deploy triggered from master branch"
             # ls -la
             ahoy deploy_pantheon master "Auto deploy triggered from master branch"
