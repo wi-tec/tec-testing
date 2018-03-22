@@ -211,16 +211,14 @@ workflows:
       - deploy_pantheon:
           requires:
             - build
-              filters:
-                branches:
-                  only:
-                    - develop
+          filters:
+            branches:
+              only: develop
 
       - deploy_artifact:
           requires:
             - build
-              filters:
-                branches:
-                  only:
-                    - master
+          filters:
+            branches:
+              only: master
                 
