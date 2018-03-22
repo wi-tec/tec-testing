@@ -44,7 +44,7 @@ commands:
       # echo 'FUERA del CLONE FOLDER DESPUES DEL COPY'
       # ls -la
       mv $CLONEFOLDER/build/* $CLONEFOLDER
-      rmdir $CLONEFOLDER/build
+      rm -r $CLONEFOLDER/build
       cd $CLONEFOLDER
 
       # echo 'DENTRO DEL CLONE FOLDER DESPUES DEL COPY'
