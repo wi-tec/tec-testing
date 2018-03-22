@@ -144,11 +144,11 @@ jobs:
       - run:
           name: Create circle rsa
           command: |
-            echo 'Host *.PANTHEON_SITE_UUID.drush.in' >> /root/.ssh/config
-            echo '   IdentityFile ~/.ssh/circleci_rsa' >> /root/.ssh/config
+            echo 'Host *.$PANTHEON_SITE_UUID.drush.in' >> /root/.ssh/config
+            echo '   IdentityFile ~/.ssh/$PRIVATE_RSA_KEY_NAME' >> /root/.ssh/config
             
-            if [ ! -f /root/.ssh/circleci_rsa ]; then
-                ssh-keygen -q -t rsa -N '' -f /root/.ssh/circleci_rsa
+            if [ ! -f /root/.ssh/$PRIVATE_RSA_KEY_NAME ]; then
+                ssh-keygen -q -t rsa -N '' -f /root/.ssh/$PRIVATE_RSA_KEY_NAME
             fi
             eval $(ssh-agent)
             
@@ -156,8 +156,8 @@ jobs:
       - save_cache:
           key: v1-circleci-rsa-cache-{{ .Environment.PANTHEON_SITE_UUID }}
           paths:
-            - /root/.ssh/circleci_rsa
-            - /root/.ssh/circleci_rsa.pub
+            - /root/.ssh/$PRIVATE_RSA_KEY_NAME
+            - /root/.ssh/$PUBLIC_RSA_KEY_NAME
 
 
 
@@ -170,23 +170,13 @@ jobs:
             echo 'Host *' >> /root/.ssh/config
             echo '   StrictHostKeyChecking no' >> /root/.ssh/config
 
-            # cat /root/.ssh/config
-
-            # ssh-keygen -f ~/.ssh/circleci_rsa -t rsa -N ''
-             
-            # terminus ssh-key:add /root/.ssh/circleci_rsa.pub
-            # echo $CIRCLECI_PRIVATE_KEY >> /root/.ssh/circleci_rsa
-            # echo $CIRCLECI_PUBLIC_KEY >> /root/.ssh/circleci_rsa.pub
-            # chmod 600 /root/.ssh/circleci_rsa
-            # chmod 644 /root.ssh/circleci_rsa.pub
+  
             eval $(ssh-agent)
             ssh-add
-            ssh-add /root/.ssh/circleci_rsa
-            terminus ssh-key:add /root/.ssh/circleci_rsa.pub
+            ssh-add /root/.ssh/$PRIVATE_RSA_KEY_NAME
+            terminus ssh-key:add /root/.ssh/$PUBLIC_RSA_KEY_NAME
             #ahoy deploy artifact "Auto deploy triggered from master branch"
-            # ls -la
             ahoy deploy_pantheon master "Auto deploy triggered from master branch"
-            # ls -la
             # terminus drush testing-ci.dev cc all
 
 workflows:
