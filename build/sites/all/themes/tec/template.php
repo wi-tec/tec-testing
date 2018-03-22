@@ -7,6 +7,7 @@
  */
 function tec_css_alter(&$css) {
   $exclude = array(
+  
   // Remove Drupal Core CSS
     'modules/aggregator/aggregator.css' => FALSE,
     //'modules/block/block.css' => FALSE,
