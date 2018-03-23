@@ -13,9 +13,9 @@ jobs:
       - run: echo 127.0.0.1 tec-testing.dev | tee -a /etc/hosts
       - checkout
       - restore_cache:
-          key: npm-cache-{{ checksum "package.json" }}
+          key: v1-npm-cache-{{ checksum "package.json" }}
       - restore_cache:
-          key: composer-cache-{{ checksum "composer.json" }}
+          key: v1-composer-cache-{{ checksum "composer.json" }}
       - run:
           name: Install Node 6
           command: |
@@ -26,7 +26,7 @@ jobs:
             apt-get install nodejs -y
       - run: npm install
       - save_cache:
-         key: npm-cache-{{ checksum "package.json" }}
+         key: v1-npm-cache-{{ checksum "package.json" }}
          paths:
            - node_modules
       - run:
@@ -40,7 +40,7 @@ jobs:
             mv composer.phar /usr/bin/composer
       - run: if [ ! -d ./.vendor ]; then composer install; fi
       - save_cache:
-         key: composer-cache-{{ checksum "composer.lock" }}
+         key: v1-composer-cache-{{ checksum "composer.json" }}
          paths:
            - .vendor
       - run:
