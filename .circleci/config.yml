@@ -61,7 +61,7 @@ jobs:
             curl -O https://raw.githubusercontent.com/pantheon-systems/terminus-installer/master/builds/installer.phar && php installer.phar install
             ln -s /var/www/vendor/bin/terminus /usr/bin/terminus
             cd /var/www/tec-testing
-            terminus auth:login --machine-token=$PANTHEON_TOKEN
+            terminus auth:login --machine-token=$PANTHEON_TOKEN_WB
       - run:
           name: Build site.
           command: |
@@ -127,8 +127,7 @@ jobs:
             terminus auth:login --machine-token=$PANTHEON_TOKEN_WB
 
       - restore_cache:
-          keys: 
-            - v1-circleci-rsa-cache-{{ .Environment.PANTHEON_SITE_UUID }}
+          key: v1-circleci-rsa-cache-{{ .Environment.PANTHEON_SITE_UUID }}
 
 
       - run:
