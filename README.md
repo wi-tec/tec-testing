@@ -1,5 +1,7 @@
 # TEC Testing
 
+[![CircleCI](https://circleci.com/gh/wi-tec/tec-testing.svg?style=svg)](https://circleci.com/gh/wi-tec/tec-testing)
+
 TEC Testing Drupal Distribution
 
 ## Dependencies
