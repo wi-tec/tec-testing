@@ -13,9 +13,11 @@ jobs:
       - run: echo 127.0.0.1 tec-testing.dev | tee -a /etc/hosts
       - checkout
       - restore_cache:
-          keys:
+          key:
             - npm-cache-{{ checksum "package.json" }}
-            - composer-cache-{{ checksum "composer.lock" }}
+      - restore_cache:
+          key:            
+            - composer-cache-{{ checksum "composer.json" }}
       - run:
           name: Install Node 6
           command: |
