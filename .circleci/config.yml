@@ -85,6 +85,7 @@ jobs:
             ./node_modules/.bin/gulp phplint
             # ./node_modules/.bin/gulp drupalcs
             # ./node_modules/.bin/gulp eslint
+            ./node_modules/.bin/gulp sasslint
       - run:
           name: Behat Testing
           command: |
